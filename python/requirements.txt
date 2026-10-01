@@ -1,0 +1,26 @@
+# Core service
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pydantic==2.10.4
+
+# Imaging / numerics
+numpy==2.2.1
+opencv-python-headless==4.11.0.86
+Pillow==11.1.0
+
+# Optional — richer metadata & provenance
+piexif==1.1.3
+defusedxml==0.7.1
+pypdf==5.1.0
+
+# OCR layer (layout + semantic + report OCR) — requires the tesseract binary:
+#   brew install tesseract
+pytesseract==0.3.13
+
+# Test client (python/tests)
+httpx==0.28.1
+
+# Optional — semantic layer (local instruction-tuned model)
+# transformers==4.48.0
+# torch==2.5.1
