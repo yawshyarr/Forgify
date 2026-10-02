@@ -5,7 +5,7 @@
     "node": ">=20.9.0"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/check-forensics-engine.mjs && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",

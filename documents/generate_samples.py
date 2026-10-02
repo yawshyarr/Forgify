@@ -444,12 +444,12 @@ def forge_pan(img: Image.Image) -> None:
 # --------------------------------------------------------------------------- #
 
 MARKSHEET_ROWS = [
-    ("English Language", 78),
+    ("English Language", 74),
     ("Data Structures", 84),
     ("Database Systems", 82),
-    ("Operating Systems", 88),
+    ("Operating Systems", 92),
     ("Computer Networks", 64),
-    ("Software Engineering Project", 100),
+    ("Software Engineering Project", 99),
 ]
 MARKSHEET_MAX_EACH = 100
 # Marks are restricted to values MEASURED to round-trip through Tesseract at
@@ -458,11 +458,13 @@ MARKSHEET_MAX_EACH = 100
 #   71 -> read as "n" (glyph merge)  66/68 -> dropped or read high, which left
 #          the column one row short and made it fail its own row-count guard.
 # 6 and 7 as leading digits are the least reliable in this face, as with the
-# invoice figures above.
-MARKSHEET_TOTAL = sum(m for _, m in MARKSHEET_ROWS)          # 496
+# invoice figures above. No subject is scored 100 either: "100 100" side by side
+# was read as "40" on 7 of 8 seeds, which understates the column sum. The row
+# guard only needs a 100 in the Maximum column, so a perfect score buys nothing.
+MARKSHEET_TOTAL = sum(m for _, m in MARKSHEET_ROWS)          # 495
 MARKSHEET_MAX = MARKSHEET_MAX_EACH * len(MARKSHEET_ROWS)       # 600
-MARKSHEET_PERCENT = round(MARKSHEET_TOTAL / MARKSHEET_MAX * 100)     # 83 (integer: see money())
-# Forgery: one subject mark inflated from 64 to 94. The printed Total (496),
+MARKSHEET_PERCENT = round(MARKSHEET_TOTAL / MARKSHEET_MAX * 100)     # 82 (integer: see money())
+# Forgery: one subject mark inflated from 64 to 94. The printed Total (495),
 # the percentage and that row's grade letter are all left untouched, so the
 # column no longer sums — the arithmetic break `semantic` is built for. Leaving
 # the dependent fields stale is deliberate: it is what a real "raise one mark"

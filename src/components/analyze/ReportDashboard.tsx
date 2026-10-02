@@ -23,6 +23,15 @@ function severityStyle(sev: string) {
   return SEVERITY_STYLE[sev] ?? SEVERITY_STYLE.info;
 }
 
+function forgeryTypeLabel(value: string) {
+  const labels: Record<string, string> = {
+    genuine: "Genuine",
+    copy_move: "Copy-Move",
+    text_replace: "Text Replacement",
+  };
+  return labels[value] ?? value.replaceAll("_", " ");
+}
+
 function FindingCard({ finding, defaultOpen = false }: { finding: Finding; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
   const s = severityStyle(finding.severity);
@@ -147,10 +156,15 @@ export function ReportDashboard({
               {report.engine.backend === "python-fastapi" ? (
                 <Chip tone="cyan">python worker</Chip>
               ) : (
-                <Chip tone="outline">reference runtime</Chip>
+                <Chip tone="outline">demo reference · not evidence-grade</Chip>
               )}
               {readonly ? <Chip tone="neutral">archived case</Chip> : null}
             </div>
+            {report.engine.backend !== "python-fastapi" ? (
+              <p className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-[12px] leading-relaxed text-amber-900">
+                Demonstration only: this report came from the deterministic reference runtime and must not be used to certify a document, support an arrest, or make a legal decision.
+              </p>
+            ) : null}
             <h2 className="mt-2.5 truncate text-[17px] font-semibold tracking-[-0.02em] text-navy-950">{report.file.name}</h2>
             <p className="mt-1 font-mono text-[10.5px] text-graphite-500">
               {fmtBytes(report.file.sizeBytes)} · {report.container.detectedType}
@@ -226,6 +240,18 @@ export function ReportDashboard({
                 </p>
               </div>
             </div>
+            {report.mlClassification ? (
+              <div className="mt-4 border-l-2 border-electric-500 bg-electric-50 px-4 py-3 text-[13px] text-navy-900">
+                <span className="font-medium">
+                  ML Prediction: {report.mlClassification.label} ({(report.mlClassification.confidence * 100).toFixed(0)}% confidence)
+                </span>
+                {report.mlClassification.forgeryType && report.mlClassification.forgeryTypeConfidence !== null ? (
+                  <span>
+                    {" "}&mdash; Forgery Type: {forgeryTypeLabel(report.mlClassification.forgeryType)} (confidence {(report.mlClassification.forgeryTypeConfidence * 100).toFixed(0)}%)
+                  </span>
+                ) : null}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

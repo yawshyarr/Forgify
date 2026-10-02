@@ -11,9 +11,17 @@ from __future__ import annotations
 import io
 import math
 import time
+import base64
 from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any
 
 import numpy as np
+
+try:
+    import joblib
+except Exception:  # pragma: no cover - optional ML dependency
+    joblib = None
 
 try:  # OpenCV is optional so the worker still boots on slim hosts
     import cv2
@@ -28,6 +36,31 @@ LIMITATIONS = [
     "Generative-AI detection is probabilistic and adversarially fragile; a low score never certifies human capture.",
     "Metadata is trivially editable and must be weighed against chain-of-custody records.",
 ]
+
+MODEL_DIRECTORY = Path(__file__).resolve().parent / "models"
+BINARY_MODEL_PATH = MODEL_DIRECTORY / "binary_classifier.pkl"
+FORGERY_TYPE_MODEL_PATH = MODEL_DIRECTORY / "forgery_type_classifier.pkl"
+
+
+def _load_model(path: Path) -> tuple[Any | None, str | None]:
+    """Load a persisted model once during worker startup."""
+    if joblib is None:
+        return None, "joblib is unavailable; ML classification cannot run."
+    if not path.is_file():
+        return None, f"Model file is missing: {path.name}."
+    try:
+        return joblib.load(path), None
+    except Exception as error:  # pragma: no cover - corrupt/incompatible model
+        return None, f"Could not load {path.name}: {error}"
+
+
+BINARY_CLASSIFIER, BINARY_MODEL_ERROR = _load_model(BINARY_MODEL_PATH)
+FORGERY_TYPE_CLASSIFIER, FORGERY_TYPE_MODEL_ERROR = _load_model(FORGERY_TYPE_MODEL_PATH)
+
+# The persisted classifier was validated only against the synthetic
+# invoice/marksheet corpus. Other domains remain diagnostic-only until a
+# domain-specific calibration set exists.
+ML_VALIDATED_DOMAINS = frozenset({"invoice", "marksheet"})
 
 
 # --------------------------------------------------------------------------- #
@@ -77,6 +110,57 @@ def screenshot_signature(image, window: int = 40) -> float:
     flat = np.exp(-np.sqrt(grad_x * grad_x + grad_y * grad_y) / 28.0).astype(np.float32)
     anomaly = (sigma_local * flat).astype(np.float32)
     return float(np.median(anomaly))
+
+
+def _ela_map(image, quality: int) -> np.ndarray | None:
+    ok, encoded = cv2.imencode(".jpg", image, [int(cv2.IMWRITE_JPEG_QUALITY), quality])
+    if not ok:
+        return None
+    decoded = cv2.imdecode(encoded, cv2.IMREAD_COLOR)
+    return cv2.absdiff(image, decoded).astype(np.float32).mean(axis=2)
+
+
+def _ela_suppression_mask(context: dict, shape) -> np.ndarray:
+    """Mask OCR text and known high-frequency machine-code areas from ELA peaks."""
+    h, w = shape[:2]
+    mask = np.zeros((h, w), dtype=np.uint8)
+    for word in getattr(context.get("_ocr"), "words", []) or []:
+        x0 = max(0, int(word["left"] - word["width"] * .35)); y0 = max(0, int(word["top"] - word["height"] * .5))
+        x1 = min(w, int(word["left"] + word["width"] * 1.35)); y1 = min(h, int(word["top"] + word["height"] * 1.5))
+        mask[y0:y1, x0:x1] = 1
+    # A barcode/QR is normally a dense high-frequency rectangular component;
+    # suppress only very dense lower-frame bands rather than assuming a card
+    # template or fixed student layout.
+    gray = to_gray(context.get("image"))
+    if gray is not None:
+        density = cv2.blur((cv2.Canny(gray, 80, 180) > 0).astype(np.float32), (31, 31))
+        mask[density > .42] = 1
+    return mask
+
+
+def _stable_ela(ela_maps: list[np.ndarray], suppression: np.ndarray) -> tuple[np.ndarray, dict]:
+    normalized = []
+    for current in ela_maps:
+        texture = cv2.GaussianBlur(np.abs(cv2.Laplacian(current, cv2.CV_32F)), (0, 0), 3) + 1.0
+        value = current / texture
+        valid = value[suppression == 0]
+        med = float(np.median(valid)) if valid.size else float(np.median(value))
+        mad = float(np.median(np.abs(valid - med))) + 1e-3 if valid.size else 1.0
+        normalized.append(np.clip((value - med) / (8.0 * mad), 0, 1))
+    stack = np.stack(normalized)
+    masks = stack > .72
+    stability = masks.mean(axis=0)
+    stable = stability >= (2.0 / len(ela_maps))
+    composite = np.median(stack, axis=0) * stability
+    valid = composite[suppression == 0]
+    metrics = {
+        "median": float(np.median(valid)) if valid.size else 0.0,
+        "p90": float(np.percentile(valid, 90)) if valid.size else 0.0,
+        "p95": float(np.percentile(valid, 95)) if valid.size else 0.0,
+        "hotspotArea": float(np.mean(stable[suppression == 0])) if valid.size else 0.0,
+        "hotspotStability": float(np.mean(stability[stable])) if np.any(stable) else 0.0,
+    }
+    return composite, metrics
 
 
 def band(score: float) -> str:
@@ -140,7 +224,17 @@ class Module:
     runtime: str
     techniques: list[str] = field(default_factory=list)
 
-    def result(self, score, findings, regions, started, summary, metrics, confidence=None) -> dict:
+    def result(
+        self,
+        score,
+        findings,
+        regions,
+        started,
+        summary,
+        metrics,
+        confidence=None,
+        status: str | None = None,
+    ) -> dict:
         return {
             "layer": self.id,
             "name": self.name,
@@ -148,7 +242,7 @@ class Module:
             "weight": self.weight,
             "score": round(float(score), 4),
             "confidence": round(float(confidence if confidence is not None else 0.6 + score * 0.3), 3),
-            "status": "alert" if score >= 0.5 else "review" if score >= 0.28 else "pass",
+            "status": status or ("alert" if score >= 0.5 else "review" if score >= 0.28 else "pass"),
             "mode": "live",
             "runtime": self.runtime,
             "durationMs": int((time.time() - started) * 1000),
@@ -193,63 +287,41 @@ class PixelModule(Module):
         gray = to_gray(image)
         height, width = gray.shape[:2]
 
-        ok, encoded = cv2.imencode(".jpg", image, [int(cv2.IMWRITE_JPEG_QUALITY), 90])
-        if not ok:  # pragma: no cover
-            return self.result(0.0, [], [], started, "Re-encode failed.", [])
-
-        decoded = cv2.imdecode(encoded, cv2.IMREAD_COLOR)
-        diff = cv2.absdiff(image, decoded).astype(np.float32)
-        ela_map = diff.max(axis=2)
-
-        block = 16
-        rows = list(range(0, max(1, height - block), block))
-        cols = list(range(0, max(1, width - block), block))
-        if not rows or not cols:
-            return self.result(0.0, [], [], started, "Image too small for block analysis.", [])
-
-        energy = np.array(
-            [[float(ela_map[r : r + block, c : c + block].mean()) for c in cols] for r in rows],
-            dtype=np.float32,
-        )
-        mean = float(energy.mean())
-        peak = float(energy.max())
-        score = 0.0
+        ela_maps = [m for m in (_ela_map(image, q) for q in (85, 90, 95)) if m is not None]
+        if len(ela_maps) != 3:
+            return self.result(0.0, [], [], started, "Multi-quality ELA unavailable.", [])
+        suppression = _ela_suppression_mask(context, (height, width))
+        composite, ela_stats = _stable_ela(ela_maps, suppression)
+        # Score localized abnormal compression behavior, not absolute ELA.
+        # A widespread response is characteristic of document texture,
+        # capture noise, or recompression. Localized evidence is rewarded;
+        # broad coverage is explicitly down-weighted and ELA cannot by itself
+        # create a near-certain pixel verdict.
+        area = ela_stats["hotspotArea"]
+        localization = float(np.clip(1.0 - max(0.0, area - 0.04) / 0.18, 0.0, 1.0))
+        score = float(np.clip((.40 * ela_stats["p95"] + .30 * ela_stats["hotspotStability"] + .30 * localization) * localization, 0, .65))
         findings: list[dict] = []
         regions: list[dict] = []
         metrics: list[dict] = []
-
-        if mean > 0:
-            ratio = peak / mean
-            score = min(1.0, max(0.0, (ratio - 1.6) / 2.4))
-            if score > 0.45:
-                index = int(np.argmax(energy))
-                row_i, col_i = np.unravel_index(index, energy.shape)
-                x0, y0 = int(cols[col_i]), int(rows[row_i])
-                x1, y1 = min(width, x0 + block * 3), min(height, y0 + block * 3)
-                box = region(
-                    "pixel", "ELA residual hotspot", score, 0.6 + score * 0.35,
-                    (x0, y0, x1, y1), (height, width), "ELA block energy",
-                    "Blocks whose re-encode residual exceeds the frame median by a wide margin.",
-                )
-                regions.append(box)
-                findings.append(
-                    finding(
-                        "pixel", "PX-ELA",
-                        "Error-level residual diverges in a localised region",
-                        band(score), 0.6 + score * 0.35,
-                        f"Re-encoding at q=90 produced a peak block residual of {peak:.2f} against a frame "
-                        f"median of {mean:.2f} (ratio {ratio:.2f}). The region did not pass through the same "
-                        "compression generation as its surroundings.",
-                        [
-                            {"label": "Peak block", "value": f"{peak:.2f}"},
-                            {"label": "Frame median", "value": f"{mean:.2f}"},
-                            {"label": "Ratio", "value": f"{ratio:.2f}"},
-                        ],
-                        box,
-                        f"{peak:.2f} vs {mean:.2f}",
-                        "Repeat ELA at q=85 and q=95 to confirm the boundary is independent of the re-encode step.",
-                    )
-                )
+        hotspot = (composite > .42).astype(np.uint8)
+        hotspot[suppression > 0] = 0
+        hotspot = cv2.morphologyEx(hotspot, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
+        count, labels, stats, _ = cv2.connectedComponentsWithStats(hotspot, 8)
+        for i in range(1, count):
+            x0, y0, rw, rh, area = stats[i]
+            if area < max(80, hotspot.size // 3000):
+                continue
+            local_score = float(np.mean(composite[labels == i]))
+            box = region("pixel", "Stable ELA hotspot", local_score, min(.9, .55 + ela_stats["hotspotStability"] * .35), (x0, y0, x0 + rw, y0 + rh), (height, width), "multi-quality texture-normalized ELA", "Hotspot remained present across multiple JPEG re-encoding qualities after text/high-frequency suppression.")
+            regions.append(box)
+        regions.sort(key=lambda item: item["score"], reverse=True)
+        regions = regions[:12]
+        if regions:
+            findings.append(finding("pixel", "PX-ELA", "Stable localized compression residual", band(score), min(.9, .55 + ela_stats["hotspotStability"] * .35), "A localized ELA residual remained stable across q85/q90/q95 after normalization against local texture and suppression of OCR/high-frequency structures. This is supporting evidence only.", [{"label": "Qualities", "value": "q85, q90, q95"}, {"label": "Median", "value": f"{ela_stats['median']:.3f}"}, {"label": "P90", "value": f"{ela_stats['p90']:.3f}"}, {"label": "P95", "value": f"{ela_stats['p95']:.3f}"}, {"label": "Hotspot area", "value": f"{ela_stats['hotspotArea']:.4f}"}, {"label": "Hotspot stability", "value": f"{ela_stats['hotspotStability']:.3f}"}], regions[0], recommendation="Corroborate this localized residual with reference comparison, OCR field evidence, or issuer records."))
+        heat = cv2.applyColorMap(np.uint8(np.clip(composite * 255, 0, 255)), cv2.COLORMAP_JET)
+        ok, heat_bytes = cv2.imencode(".jpg", heat, [int(cv2.IMWRITE_JPEG_QUALITY), 85])
+        heatmap = f"data:image/jpeg;base64,{base64.b64encode(heat_bytes).decode('ascii')}" if ok else None
+        metrics.extend([{ "label": "ELA qualities", "value": "q85/q90/q95" }, {"label": "ELA median", "value": f"{ela_stats['median']:.3f}"}, {"label": "ELA P90", "value": f"{ela_stats['p90']:.3f}"}, {"label": "ELA P95", "value": f"{ela_stats['p95']:.3f}"}, {"label": "Hotspot area", "value": f"{ela_stats['hotspotArea']:.4f}"}, {"label": "Hotspot stability", "value": f"{ela_stats['hotspotStability']:.3f}"}, {"label": "Localization factor", "value": f"{localization:.3f}"}])
 
         laplacian = cv2.Laplacian(gray, cv2.CV_32F)
         global_sigma = float(laplacian.std())
@@ -295,16 +367,15 @@ class PixelModule(Module):
             )
             metrics.append({"label": "Flat-area residual", "value": f"{smooth:.3f}"})
 
-        metrics.extend([
-            {"label": "ELA median", "value": f"{mean:.2f}"},
-            {"label": "ELA peak", "value": f"{peak:.2f}"},
-            {"label": "Noise divergence", "value": f"{divergence:.3f}"},
-        ])
-        return self.result(
+        metrics.append({"label": "Noise divergence", "value": f"{divergence:.3f}"})
+        output = self.result(
             score, findings, regions, started,
-            f"ELA frame median {mean:.2f}, peak {peak:.2f}; noise divergence {divergence:.3f}.",
+            f"Multi-quality ELA found {len(regions)} stable hotspot(s); noise divergence {divergence:.3f}.",
             metrics,
         )
+        output["heatmap"] = heatmap
+        output["elaEvidence"] = {"qualities": [85, 90, 95], **ela_stats, "suppressedPixels": int(suppression.sum())}
+        return output
 
 
 # --------------------------------------------------------------------------- #
@@ -409,6 +480,260 @@ class CopyMoveModule(Module):
         )
 
 
+class QRBarcodeModule(Module):
+    """Decode machine-readable identifiers; decoding alone is not authenticity proof."""
+
+    def __init__(self) -> None:
+        super().__init__(
+            id="qr-barcode", name="QR / Barcode Verification", category="content", weight=0.05,
+            runtime="OpenCV QRCodeDetector / BarcodeDetector", techniques=["QR payload decode", "Barcode payload decode", "Reference payload comparison"],
+        )
+
+    def run(self, context: dict) -> dict:
+        started = time.time()
+        image = context.get("image")
+        decoded: list[dict] = []
+        if image is not None and cv2 is not None:
+            try:
+                detector = cv2.QRCodeDetector()
+                ok, values, points, _ = detector.detectAndDecodeMulti(image)
+                if ok and values:
+                    for index, value in enumerate(values):
+                        if str(value).strip():
+                            point = points[index] if points is not None and index < len(points) else None
+                            decoded.append({"kind": "qr", "payload": str(value).strip(), "bbox": _points_box(point, image.shape) if point is not None else None, "confidence": 0.9})
+                value, point, _ = detector.detectAndDecode(image)
+                if value and not any(item["payload"] == value.strip() for item in decoded):
+                    decoded.append({"kind": "qr", "payload": value.strip(), "bbox": _points_box(point, image.shape) if point is not None else None, "confidence": 0.85})
+            except Exception:
+                pass
+            try:
+                barcode = getattr(cv2, "barcode", None)
+                if barcode is not None and hasattr(barcode, "BarcodeDetector"):
+                    ok, values, points, _ = barcode.BarcodeDetector().detectAndDecode(image)
+                    if ok and values:
+                        for index, value in enumerate(values):
+                            if str(value).strip():
+                                point = points[index] if points is not None and index < len(points) else None
+                                decoded.append({"kind": "barcode", "payload": str(value).strip(), "bbox": _points_box(point, image.shape) if point is not None else None, "confidence": 0.8})
+            except Exception:
+                pass
+        findings: list[dict] = []
+        regions = []
+        for item in decoded:
+            if item["bbox"]:
+                regions.append(region(self.id, f"Decoded {item['kind']}", 0.0, item["confidence"], _bbox_pixels(item["bbox"], image.shape), image.shape[:2], "live code decoder", "Decoded payload; decoding alone is not authenticity evidence."))
+        ocr_text = " ".join(str(word.get("text", "")) for word in getattr(context.get("_ocr"), "words", []))
+        for item in decoded:
+            payload_norm = "".join(ch.lower() for ch in item["payload"] if ch.isalnum())
+            ocr_norm = "".join(ch.lower() for ch in ocr_text if ch.isalnum())
+            if payload_norm and len(payload_norm) >= 4 and payload_norm not in ocr_norm:
+                findings.append(finding(self.id, "QR_OCR_MISMATCH", "Decoded payload conflicts with visible OCR", "high", 0.86, "The decoded QR/barcode payload was not found in the visible OCR text. This is a cross-consistency conflict, not proof of forgery by itself.", [{"label": "Payload", "value": item["payload"]}, {"label": "OCR text", "value": ocr_text[:180]}], recommendation="Verify the printed identifier and machine-readable payload against the issuing authority."))
+        reference_codes = context.get("referenceCodes", [])
+        if reference_codes and sorted(x["payload"] for x in decoded) != sorted(reference_codes):
+            findings.append(finding(self.id, "QR_REFERENCE_MISMATCH", "Decoded payload differs from reference", "high", 0.92, "The machine-readable payload in the evidence differs from the trusted reference payload.", [{"label": "Evidence payload", "value": "; ".join(x["payload"] for x in decoded)}, {"label": "Reference payload", "value": "; ".join(reference_codes)}], recommendation="Confirm the payload with the issuing authority."))
+        score = 0.7 if any(item["code"] in {"QR_OCR_MISMATCH", "QR_REFERENCE_MISMATCH"} for item in findings) else 0.0
+        metrics = [{"label": "Decoded payloads", "value": str(len(decoded))}, {"label": "Decoder status", "value": "decoded" if decoded else "unable to decode / unavailable"}]
+        if decoded:
+            metrics.append({"label": "Payload", "value": "; ".join(item["payload"] for item in decoded)[:180]})
+        summary = f"Decoded {len(decoded)} machine-readable payload(s)." if decoded else "QR/barcode unavailable or unable to decode; no risk added."
+        return self.result(score, findings, regions, started, summary, metrics, confidence=(0.86 if findings else 0.0))
+
+
+def _points_box(points, shape):
+    if points is None:
+        return None
+    arr = np.asarray(points).reshape(-1, 2)
+    h, w = shape[:2]
+    return {"x": float(np.min(arr[:, 0]) / w), "y": float(np.min(arr[:, 1]) / h), "width": float((np.max(arr[:, 0]) - np.min(arr[:, 0])) / w), "height": float((np.max(arr[:, 1]) - np.min(arr[:, 1])) / h)}
+
+
+def _bbox_pixels(box, shape):
+    h, w = shape[:2]
+    return (box["x"] * w, box["y"] * h, (box["x"] + box["width"]) * w, (box["y"] + box["height"]) * h)
+
+
+# --------------------------------------------------------------------------- #
+#  12 · trained classifier inference
+# --------------------------------------------------------------------------- #
+
+
+class MLClassifierModule(Module):
+    """Experimental classifier; not a calibrated universal forgery probability."""
+
+    def __init__(self) -> None:
+        super().__init__(
+            id="ml-classifier",
+            name="Trained ML Classification",
+            category="intelligence",
+            weight=0.03,
+            runtime="scikit-learn RandomForestClassifier + joblib",
+            techniques=[
+                "Binary genuine / forged random forest",
+                "Three-class forgery-type random forest",
+                "Live Pixel, Copy-Move, Layout and OCR feature reuse",
+            ],
+        )
+
+    @staticmethod
+    def _metric_value(result: dict, label: str, default: float = 0.0) -> float:
+        for metric in result.get("metrics", []):
+            if metric.get("label") == label:
+                try:
+                    return float(metric.get("value"))
+                except (TypeError, ValueError):
+                    return default
+        return default
+
+    @staticmethod
+    def _ocr_confidence(context: dict) -> float:
+        ocr = context.get("_ocr")
+        words = getattr(ocr, "words", []) if ocr is not None else []
+        confidences = [float(word["conf"]) for word in words if float(word.get("conf", -1)) >= 0]
+        return float(np.mean(confidences)) if confidences else 0.0
+
+    @staticmethod
+    def _result_from_context(context: dict, module_id: str) -> dict | None:
+        return (context.get("_layer_results") or {}).get(module_id)
+
+    def _run_fallback_module(self, context: dict, module_id: str) -> dict:
+        module = (context.get("_module_instances") or {}).get(module_id)
+        if module is not None:
+            return module.run(context)
+        if module_id == "pixel":
+            return PixelModule().run(context)
+        if module_id == "copy-move":
+            return CopyMoveModule().run(context)
+        if module_id == "layout":
+            from app.forensics.forgify import LayoutModule
+
+            return LayoutModule().run(context)
+        raise ValueError(f"Unsupported feature module: {module_id}")
+
+    def _features(self, context: dict) -> list[float]:
+        pixel = self._result_from_context(context, "pixel")
+        if pixel is None:
+            pixel = self._run_fallback_module(context, "pixel")
+        copy_move = self._result_from_context(context, "copy-move")
+        if copy_move is None:
+            copy_move = self._run_fallback_module(context, "copy-move")
+        layout = self._result_from_context(context, "layout")
+        if layout is None:
+            layout = self._run_fallback_module(context, "layout")
+
+        return [
+            self._ocr_confidence(context),
+            float(pixel.get("score", 0.0)),
+            float(copy_move.get("score", 0.0)),
+            self._metric_value(pixel, "Noise divergence"),
+            float(layout.get("score", 0.0)),
+        ]
+
+    @staticmethod
+    def _probability_for(classifier: Any, label: str, probabilities: np.ndarray) -> float:
+        classes = [str(value) for value in classifier.classes_]
+        return float(probabilities[classes.index(label)])
+
+    def run(self, context: dict) -> dict:
+        started = time.time()
+        domain = context.get("documentDomain", "unknown")
+        if domain not in ML_VALIDATED_DOMAINS:
+            return self.result(
+                0.0, [], [], started,
+                f"ML classifier OUT_OF_DOMAIN for '{domain}'; diagnostic result quarantined from primary risk.",
+                [{"label": "Domain", "value": domain}, {"label": "Model status", "value": "OUT_OF_DOMAIN / SKIPPED"}, {"label": "Probability meaning", "value": "not applicable"}],
+                confidence=0.0, status="skipped",
+            )
+        model_errors = [error for error in (BINARY_MODEL_ERROR, FORGERY_TYPE_MODEL_ERROR) if error]
+        if BINARY_CLASSIFIER is None or FORGERY_TYPE_CLASSIFIER is None:
+            return self.result(
+                0.0,
+                [],
+                [],
+                started,
+                "ML classification skipped: " + " ".join(model_errors),
+                [],
+                confidence=0.0,
+                status="skipped",
+            )
+
+        try:
+            features = np.asarray([self._features(context)], dtype=float)
+            if not np.isfinite(features).all():
+                raise ValueError("feature extraction produced a non-finite value")
+            binary_prediction = str(BINARY_CLASSIFIER.predict(features)[0])
+            binary_probabilities = BINARY_CLASSIFIER.predict_proba(features)[0]
+            binary_confidence = self._probability_for(
+                BINARY_CLASSIFIER, binary_prediction, binary_probabilities
+            )
+            forged_probability = self._probability_for(
+                BINARY_CLASSIFIER, "forged", binary_probabilities
+            )
+        except Exception as error:
+            return self.result(
+                0.0,
+                [],
+                [],
+                started,
+                f"ML classification skipped: feature inference failed ({error}).",
+                [],
+                confidence=0.0,
+                status="skipped",
+            )
+
+        forgery_type = None
+        forgery_type_confidence = None
+        if binary_prediction == "forged":
+            type_prediction = str(FORGERY_TYPE_CLASSIFIER.predict(features)[0])
+            type_probabilities = FORGERY_TYPE_CLASSIFIER.predict_proba(features)[0]
+            forgery_type = type_prediction
+            forgery_type_confidence = self._probability_for(
+                FORGERY_TYPE_CLASSIFIER, type_prediction, type_probabilities
+            )
+
+        classification = {
+            "label": binary_prediction.upper(),
+            "confidence": round(binary_confidence, 6),
+            "forgeryType": forgery_type,
+            "forgeryTypeConfidence": (
+                round(forgery_type_confidence, 6)
+                if forgery_type_confidence is not None
+                else None
+            ),
+        }
+        metrics = [
+            {"label": "ML prediction", "value": classification["label"]},
+            {"label": "Prediction confidence", "value": f"{binary_confidence:.3f}"},
+            {"label": "OCR confidence", "value": f"{features[0, 0]:.3f}"},
+            {"label": "Pixel score", "value": f"{features[0, 1]:.3f}"},
+            {"label": "Copy-move score", "value": f"{features[0, 2]:.3f}"},
+            {"label": "Noise anomaly", "value": f"{features[0, 3]:.3f}"},
+            {"label": "Text inconsistency", "value": f"{features[0, 4]:.3f}"},
+        ]
+        if forgery_type is not None:
+            metrics.extend([
+                {"label": "Forgery type", "value": forgery_type},
+                {"label": "Forgery-type confidence", "value": f"{forgery_type_confidence:.3f}"},
+            ])
+
+        # The persisted model was trained on synthetic fixtures. Keep the
+        # output as an experimental score and cap its influence until a
+        # domain-specific, held-out calibration set is available.
+        experimental_score = float(np.clip(forged_probability * 0.5, 0.0, 0.5))
+        result = self.result(
+            experimental_score,
+            [],
+            [],
+            started,
+            f"ML predicts {classification['label']} with {binary_confidence:.1%} confidence.",
+            metrics,
+            confidence=min(0.5, binary_confidence),
+        )
+        result["mlClassification"] = classification
+        result["mlClassification"]["calibrationStatus"] = "experimental-synthetic-domain"
+        return result
+
+
 # --------------------------------------------------------------------------- #
 #  11 · generative-AI detection
 # --------------------------------------------------------------------------- #
@@ -497,4 +822,12 @@ def ocr_stub(context: dict) -> dict:
     }
 
 
-__all__ = ["MODULES", "Module", "byte_entropy", "ocr_stub", "LIMITATIONS", "io"]
+__all__ = [
+    "MODULES",
+    "MLClassifierModule",
+    "Module",
+    "byte_entropy",
+    "ocr_stub",
+    "LIMITATIONS",
+    "io",
+]

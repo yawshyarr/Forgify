@@ -23,7 +23,9 @@ export type LayerId =
   | "signature"
   | "qr-barcode"
   | "semantic"
-  | "aigc";
+  | "aigc"
+  | "ml-classifier"
+  | "reference";
 
 export type Severity = "benign" | "info" | "low" | "medium" | "high" | "critical";
 
@@ -49,6 +51,18 @@ export interface Region extends Box {
   confidence: number;
   notes: string;
   technique: string;
+}
+
+/** One physical suspicious area after overlapping detector observations merge. */
+export interface UnifiedRegion {
+  id: string;
+  bbox: Box;
+  regionType: string;
+  detectors: string[];
+  scores: Record<string, number>;
+  confidence: number;
+  evidence: string[];
+  whySuspicious: string;
 }
 
 export interface EvidencePair {
@@ -87,6 +101,7 @@ export interface LayerResult {
   techniques: string[];
   findings: Finding[];
   metrics: EvidencePair[];
+  heatmap?: string | null;
 }
 
 export interface PipelineStep {
@@ -115,6 +130,7 @@ export interface FusionResult {
   entropy: number;
   alertCount: number;
   contributions: FusionContribution[];
+  familyEvidence?: Array<{ family: string; score: number; weight: number; contribution: number; members: string[]; findingCount: number }>;
   rationale: string[];
 }
 
@@ -134,6 +150,13 @@ export interface OcrResult {
   meanConfidence: number;
   text: string;
   blocks: OcrBlock[];
+}
+
+export interface MLClassification {
+  label: "GENUINE" | "FORGED";
+  confidence: number;
+  forgeryType: string | null;
+  forgeryTypeConfidence: number | null;
 }
 
 export interface MetadataEntry {
@@ -178,6 +201,17 @@ export interface ReferenceFacts {
   comparedLayers: LayerId[];
 }
 
+export interface ReferenceComparisonEvidence {
+  aligned: boolean;
+  alignmentConfidence: number;
+  changedRegions: Array<{ bbox: Box; changeType: string; score: number; confidence: number; supportingEvidence: string[] }>;
+  unchangedRegions: Array<{ bbox: Box; score: number; supportingEvidence: string[] }>;
+  textChanges: Array<{ bbox: Box; changeType: string; score: number; confidence: number; supportingEvidence: string[] }>;
+  imageChanges: Array<{ bbox?: Box; changeType: string; score: number; confidence: number; supportingEvidence: string[] }>;
+  structuralDifference: number;
+  heatmap?: string | null;
+}
+
 export interface HashBundle {
   md5: string;
   sha1: string;
@@ -213,9 +247,20 @@ export interface AnalysisReport {
   container: ContainerFacts;
   metadata: MetadataEntry[];
   ocr: OcrResult;
+  mlClassification: MLClassification | null;
   layers: LayerResult[];
   findings: Finding[];
   regions: Region[];
+  unifiedRegions?: UnifiedRegion[];
+  regionFindings?: Array<{
+    id: string;
+    regionId: string;
+    regionType: string;
+    bbox: Box;
+    confidence: number;
+    evidence: string[];
+    description: string;
+  }>;
   fusion: FusionResult;
   verdict: {
     label: Verdict;
@@ -226,6 +271,10 @@ export interface AnalysisReport {
   };
   pipeline: PipelineStep[];
   reference: ReferenceFacts;
+  referenceComparison?: ReferenceComparisonEvidence | null;
+  identityFields?: Array<{ fieldType: string; text: string; bbox: Box; confidence: number }>;
+  identityFieldComparisons?: Array<Record<string, unknown>>;
+  identityFindings?: Array<Record<string, unknown>>;
   limitations: string[];
 }
 

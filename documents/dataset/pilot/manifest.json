@@ -1,0 +1,754 @@
+{
+  "dataset": "forgify-identity-card-pilot-v1",
+  "generator": "documents/dataset/generate_dataset.py --pilot",
+  "seed_base": 20260501,
+  "doc_types": [
+    "id_card"
+  ],
+  "manipulations": [
+    "name_replacement",
+    "dob_replacement",
+    "registration_replacement"
+  ],
+  "benign_transformations": [
+    "jpeg_recompression",
+    "resize",
+    "mild_crop",
+    "brightness",
+    "contrast"
+  ],
+  "expectedDocumentStatusValues": [
+    "genuine",
+    "manipulated"
+  ],
+  "limitations": [
+    "The current ID-card template has no explicit course/branch or academic-year field; those pilot cases are not generated."
+  ],
+  "samples": [
+    {
+      "caseId": "IDP-000_genuine",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "pilot/references/IDP-000.png",
+      "forged_path": null,
+      "mask_path": null,
+      "referenceImage": "pilot/references/IDP-000.png",
+      "evidenceImage": "pilot/references/IDP-000.png",
+      "region_box": null,
+      "region": null,
+      "fieldsChanged": [],
+      "expectedDocumentStatus": "genuine",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:genuine:0",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-000_name_replacement",
+      "doc_type": "id_card",
+      "manipulation": "name_replacement",
+      "original_path": "pilot/references/IDP-000.png",
+      "forged_path": "pilot/evidence/IDP-000_name_replacement.png",
+      "mask_path": "pilot/masks/IDP-000_name_replacement.png",
+      "referenceImage": "pilot/references/IDP-000.png",
+      "evidenceImage": "pilot/evidence/IDP-000_name_replacement.png",
+      "region_box": [
+        287,
+        150,
+        494,
+        180
+      ],
+      "region": {
+        "field": "name",
+        "bbox": [
+          287,
+          150,
+          207,
+          30
+        ]
+      },
+      "fieldsChanged": [
+        "name"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:name_replacement:0",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-000_dob_replacement",
+      "doc_type": "id_card",
+      "manipulation": "dob_replacement",
+      "original_path": "pilot/references/IDP-000.png",
+      "forged_path": "pilot/evidence/IDP-000_dob_replacement.png",
+      "mask_path": "pilot/masks/IDP-000_dob_replacement.png",
+      "referenceImage": "pilot/references/IDP-000.png",
+      "evidenceImage": "pilot/evidence/IDP-000_dob_replacement.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "region": {
+        "field": "date_of_birth",
+        "bbox": [
+          287,
+          219,
+          208,
+          24
+        ]
+      },
+      "fieldsChanged": [
+        "date_of_birth"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:dob_replacement:0",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-000_registration_replacement",
+      "doc_type": "id_card",
+      "manipulation": "registration_replacement",
+      "original_path": "pilot/references/IDP-000.png",
+      "forged_path": "pilot/evidence/IDP-000_registration_replacement.png",
+      "mask_path": "pilot/masks/IDP-000_registration_replacement.png",
+      "referenceImage": "pilot/references/IDP-000.png",
+      "evidenceImage": "pilot/evidence/IDP-000_registration_replacement.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "region": {
+        "field": "registration_number",
+        "bbox": [
+          617,
+          220,
+          208,
+          21
+        ]
+      },
+      "fieldsChanged": [
+        "registration_number"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:registration_replacement:0",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-000_jpeg_recompression",
+      "doc_type": "id_card",
+      "manipulation": "jpeg_recompression",
+      "original_path": "pilot/references/IDP-000.png",
+      "forged_path": "pilot/evidence/IDP-000_jpeg_recompression.png",
+      "mask_path": null,
+      "referenceImage": "pilot/references/IDP-000.png",
+      "evidenceImage": "pilot/evidence/IDP-000_jpeg_recompression.png",
+      "region_box": null,
+      "region": null,
+      "fieldsChanged": [],
+      "expectedDocumentStatus": "genuine",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:jpeg_recompression:0",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-001_genuine",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "pilot/references/IDP-001.png",
+      "forged_path": null,
+      "mask_path": null,
+      "referenceImage": "pilot/references/IDP-001.png",
+      "evidenceImage": "pilot/references/IDP-001.png",
+      "region_box": null,
+      "region": null,
+      "fieldsChanged": [],
+      "expectedDocumentStatus": "genuine",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:genuine:1",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-001_name_replacement",
+      "doc_type": "id_card",
+      "manipulation": "name_replacement",
+      "original_path": "pilot/references/IDP-001.png",
+      "forged_path": "pilot/evidence/IDP-001_name_replacement.png",
+      "mask_path": "pilot/masks/IDP-001_name_replacement.png",
+      "referenceImage": "pilot/references/IDP-001.png",
+      "evidenceImage": "pilot/evidence/IDP-001_name_replacement.png",
+      "region_box": [
+        287,
+        150,
+        476,
+        175
+      ],
+      "region": {
+        "field": "name",
+        "bbox": [
+          287,
+          150,
+          189,
+          25
+        ]
+      },
+      "fieldsChanged": [
+        "name"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:name_replacement:1",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-001_dob_replacement",
+      "doc_type": "id_card",
+      "manipulation": "dob_replacement",
+      "original_path": "pilot/references/IDP-001.png",
+      "forged_path": "pilot/evidence/IDP-001_dob_replacement.png",
+      "mask_path": "pilot/masks/IDP-001_dob_replacement.png",
+      "referenceImage": "pilot/references/IDP-001.png",
+      "evidenceImage": "pilot/evidence/IDP-001_dob_replacement.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "region": {
+        "field": "date_of_birth",
+        "bbox": [
+          287,
+          219,
+          208,
+          24
+        ]
+      },
+      "fieldsChanged": [
+        "date_of_birth"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:dob_replacement:1",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-001_registration_replacement",
+      "doc_type": "id_card",
+      "manipulation": "registration_replacement",
+      "original_path": "pilot/references/IDP-001.png",
+      "forged_path": "pilot/evidence/IDP-001_registration_replacement.png",
+      "mask_path": "pilot/masks/IDP-001_registration_replacement.png",
+      "referenceImage": "pilot/references/IDP-001.png",
+      "evidenceImage": "pilot/evidence/IDP-001_registration_replacement.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "region": {
+        "field": "registration_number",
+        "bbox": [
+          617,
+          220,
+          208,
+          21
+        ]
+      },
+      "fieldsChanged": [
+        "registration_number"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:registration_replacement:1",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-001_resize",
+      "doc_type": "id_card",
+      "manipulation": "resize",
+      "original_path": "pilot/references/IDP-001.png",
+      "forged_path": "pilot/evidence/IDP-001_resize.png",
+      "mask_path": null,
+      "referenceImage": "pilot/references/IDP-001.png",
+      "evidenceImage": "pilot/evidence/IDP-001_resize.png",
+      "region_box": null,
+      "region": null,
+      "fieldsChanged": [],
+      "expectedDocumentStatus": "genuine",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:resize:1",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-002_genuine",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "pilot/references/IDP-002.png",
+      "forged_path": null,
+      "mask_path": null,
+      "referenceImage": "pilot/references/IDP-002.png",
+      "evidenceImage": "pilot/references/IDP-002.png",
+      "region_box": null,
+      "region": null,
+      "fieldsChanged": [],
+      "expectedDocumentStatus": "genuine",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:genuine:2",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-002_name_replacement",
+      "doc_type": "id_card",
+      "manipulation": "name_replacement",
+      "original_path": "pilot/references/IDP-002.png",
+      "forged_path": "pilot/evidence/IDP-002_name_replacement.png",
+      "mask_path": "pilot/masks/IDP-002_name_replacement.png",
+      "referenceImage": "pilot/references/IDP-002.png",
+      "evidenceImage": "pilot/evidence/IDP-002_name_replacement.png",
+      "region_box": [
+        287,
+        150,
+        491,
+        180
+      ],
+      "region": {
+        "field": "name",
+        "bbox": [
+          287,
+          150,
+          204,
+          30
+        ]
+      },
+      "fieldsChanged": [
+        "name"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:name_replacement:2",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-002_dob_replacement",
+      "doc_type": "id_card",
+      "manipulation": "dob_replacement",
+      "original_path": "pilot/references/IDP-002.png",
+      "forged_path": "pilot/evidence/IDP-002_dob_replacement.png",
+      "mask_path": "pilot/masks/IDP-002_dob_replacement.png",
+      "referenceImage": "pilot/references/IDP-002.png",
+      "evidenceImage": "pilot/evidence/IDP-002_dob_replacement.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "region": {
+        "field": "date_of_birth",
+        "bbox": [
+          287,
+          219,
+          208,
+          24
+        ]
+      },
+      "fieldsChanged": [
+        "date_of_birth"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:dob_replacement:2",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-002_registration_replacement",
+      "doc_type": "id_card",
+      "manipulation": "registration_replacement",
+      "original_path": "pilot/references/IDP-002.png",
+      "forged_path": "pilot/evidence/IDP-002_registration_replacement.png",
+      "mask_path": "pilot/masks/IDP-002_registration_replacement.png",
+      "referenceImage": "pilot/references/IDP-002.png",
+      "evidenceImage": "pilot/evidence/IDP-002_registration_replacement.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "region": {
+        "field": "registration_number",
+        "bbox": [
+          617,
+          220,
+          208,
+          21
+        ]
+      },
+      "fieldsChanged": [
+        "registration_number"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:registration_replacement:2",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-002_mild_crop",
+      "doc_type": "id_card",
+      "manipulation": "mild_crop",
+      "original_path": "pilot/references/IDP-002.png",
+      "forged_path": "pilot/evidence/IDP-002_mild_crop.png",
+      "mask_path": null,
+      "referenceImage": "pilot/references/IDP-002.png",
+      "evidenceImage": "pilot/evidence/IDP-002_mild_crop.png",
+      "region_box": null,
+      "region": null,
+      "fieldsChanged": [],
+      "expectedDocumentStatus": "genuine",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:mild_crop:2",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-003_genuine",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "pilot/references/IDP-003.png",
+      "forged_path": null,
+      "mask_path": null,
+      "referenceImage": "pilot/references/IDP-003.png",
+      "evidenceImage": "pilot/references/IDP-003.png",
+      "region_box": null,
+      "region": null,
+      "fieldsChanged": [],
+      "expectedDocumentStatus": "genuine",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:genuine:3",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-003_name_replacement",
+      "doc_type": "id_card",
+      "manipulation": "name_replacement",
+      "original_path": "pilot/references/IDP-003.png",
+      "forged_path": "pilot/evidence/IDP-003_name_replacement.png",
+      "mask_path": "pilot/masks/IDP-003_name_replacement.png",
+      "referenceImage": "pilot/references/IDP-003.png",
+      "evidenceImage": "pilot/evidence/IDP-003_name_replacement.png",
+      "region_box": [
+        287,
+        150,
+        471,
+        180
+      ],
+      "region": {
+        "field": "name",
+        "bbox": [
+          287,
+          150,
+          184,
+          30
+        ]
+      },
+      "fieldsChanged": [
+        "name"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:name_replacement:3",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-003_dob_replacement",
+      "doc_type": "id_card",
+      "manipulation": "dob_replacement",
+      "original_path": "pilot/references/IDP-003.png",
+      "forged_path": "pilot/evidence/IDP-003_dob_replacement.png",
+      "mask_path": "pilot/masks/IDP-003_dob_replacement.png",
+      "referenceImage": "pilot/references/IDP-003.png",
+      "evidenceImage": "pilot/evidence/IDP-003_dob_replacement.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "region": {
+        "field": "date_of_birth",
+        "bbox": [
+          287,
+          219,
+          208,
+          24
+        ]
+      },
+      "fieldsChanged": [
+        "date_of_birth"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:dob_replacement:3",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-003_registration_replacement",
+      "doc_type": "id_card",
+      "manipulation": "registration_replacement",
+      "original_path": "pilot/references/IDP-003.png",
+      "forged_path": "pilot/evidence/IDP-003_registration_replacement.png",
+      "mask_path": "pilot/masks/IDP-003_registration_replacement.png",
+      "referenceImage": "pilot/references/IDP-003.png",
+      "evidenceImage": "pilot/evidence/IDP-003_registration_replacement.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "region": {
+        "field": "registration_number",
+        "bbox": [
+          617,
+          220,
+          208,
+          21
+        ]
+      },
+      "fieldsChanged": [
+        "registration_number"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:registration_replacement:3",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-003_brightness",
+      "doc_type": "id_card",
+      "manipulation": "brightness",
+      "original_path": "pilot/references/IDP-003.png",
+      "forged_path": "pilot/evidence/IDP-003_brightness.png",
+      "mask_path": null,
+      "referenceImage": "pilot/references/IDP-003.png",
+      "evidenceImage": "pilot/evidence/IDP-003_brightness.png",
+      "region_box": null,
+      "region": null,
+      "fieldsChanged": [],
+      "expectedDocumentStatus": "genuine",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:brightness:3",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-004_genuine",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "pilot/references/IDP-004.png",
+      "forged_path": null,
+      "mask_path": null,
+      "referenceImage": "pilot/references/IDP-004.png",
+      "evidenceImage": "pilot/references/IDP-004.png",
+      "region_box": null,
+      "region": null,
+      "fieldsChanged": [],
+      "expectedDocumentStatus": "genuine",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:genuine:4",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-004_name_replacement",
+      "doc_type": "id_card",
+      "manipulation": "name_replacement",
+      "original_path": "pilot/references/IDP-004.png",
+      "forged_path": "pilot/evidence/IDP-004_name_replacement.png",
+      "mask_path": "pilot/masks/IDP-004_name_replacement.png",
+      "referenceImage": "pilot/references/IDP-004.png",
+      "evidenceImage": "pilot/evidence/IDP-004_name_replacement.png",
+      "region_box": [
+        287,
+        150,
+        429,
+        175
+      ],
+      "region": {
+        "field": "name",
+        "bbox": [
+          287,
+          150,
+          142,
+          25
+        ]
+      },
+      "fieldsChanged": [
+        "name"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:name_replacement:4",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-004_dob_replacement",
+      "doc_type": "id_card",
+      "manipulation": "dob_replacement",
+      "original_path": "pilot/references/IDP-004.png",
+      "forged_path": "pilot/evidence/IDP-004_dob_replacement.png",
+      "mask_path": "pilot/masks/IDP-004_dob_replacement.png",
+      "referenceImage": "pilot/references/IDP-004.png",
+      "evidenceImage": "pilot/evidence/IDP-004_dob_replacement.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "region": {
+        "field": "date_of_birth",
+        "bbox": [
+          287,
+          219,
+          208,
+          24
+        ]
+      },
+      "fieldsChanged": [
+        "date_of_birth"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:dob_replacement:4",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-004_registration_replacement",
+      "doc_type": "id_card",
+      "manipulation": "registration_replacement",
+      "original_path": "pilot/references/IDP-004.png",
+      "forged_path": "pilot/evidence/IDP-004_registration_replacement.png",
+      "mask_path": "pilot/masks/IDP-004_registration_replacement.png",
+      "referenceImage": "pilot/references/IDP-004.png",
+      "evidenceImage": "pilot/evidence/IDP-004_registration_replacement.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "region": {
+        "field": "registration_number",
+        "bbox": [
+          617,
+          220,
+          208,
+          21
+        ]
+      },
+      "fieldsChanged": [
+        "registration_number"
+      ],
+      "expectedDocumentStatus": "manipulated",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:registration_replacement:4",
+      "attributes": {}
+    },
+    {
+      "caseId": "IDP-004_contrast",
+      "doc_type": "id_card",
+      "manipulation": "contrast",
+      "original_path": "pilot/references/IDP-004.png",
+      "forged_path": "pilot/evidence/IDP-004_contrast.png",
+      "mask_path": null,
+      "referenceImage": "pilot/references/IDP-004.png",
+      "evidenceImage": "pilot/evidence/IDP-004_contrast.png",
+      "region_box": null,
+      "region": null,
+      "fieldsChanged": [],
+      "expectedDocumentStatus": "genuine",
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260501:contrast:4",
+      "attributes": {}
+    }
+  ]
+}

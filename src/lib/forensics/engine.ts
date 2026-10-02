@@ -389,6 +389,7 @@ export function analyzeEvidence(input: AnalyzeInput): AnalysisReport {
       text: textLayer.blocks.map((b) => b.text).join("\n"),
       blocks: textLayer.blocks,
     },
+    mlClassification: null,
     layers,
     findings,
     regions,

@@ -667,6 +667,16 @@ def _invoice_checks(words, image_h):
             rows.append(cell)
 
     amounts = [r[ac] for r in rows]
+
+    # Does this table behave like a line-item table at all? Only the arithmetic
+    # identity qty x rate = amount can tell a price list from, say, an
+    # electricity meter's "Previous / Current / Units" table, which also has
+    # three or more numeric columns and never satisfies that product. Requiring
+    # at least one row to satisfy the identity before reporting any breach is
+    # what keeps a non-price table from raising an arithmetic alert: absence of
+    # evidence lowers confidence, it is not evidence of forgery. An invoice
+    # whose subtotal/grand-total still reconcile is unaffected either way.
+    checks: list[dict] = []
     for r in rows:
         q = _num(r[qc]["text"])
         p = _num(r[pc]["text"])
@@ -674,14 +684,17 @@ def _invoice_checks(words, image_h):
         exp = q * p
         if all(w["conf"] >= 60 for w in (r[qc], r[pc], r[ac])) and exp > 0:
             diff = abs(exp - a)
-            yield {
+            checks.append({
                 "name": "line_amount", "ok": diff <= max(2.0, 0.05 * exp),
                 "expected": round(exp, 2), "actual": a, "diff": diff,
                 "base": ROW_BASE_CONF, "strong": diff > 0.8 * a,
                 "tokens": [r[qc], r[pc], r[ac]],
                 "region": [r[ac]["left"], r[ac]["top"],
                            r[ac]["left"] + r[ac]["width"], r[ac]["top"] + r[ac]["height"]],
-            }
+            })
+    if not checks or not any(c["ok"] for c in checks):
+        return
+    yield from checks
 
     if len(rows) == len(table_banks) and len(rows) >= MIN_ROWS and sub_lab is not None:
         exp = sum(_num(w["text"]) for w in amounts)

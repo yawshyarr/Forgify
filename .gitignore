@@ -1,2 +1,11 @@
 node_modules/
 .next/
+.env
+.env.*
+!.env.example
+python/.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+tsconfig.tsbuildinfo
+Forgify-project.zip

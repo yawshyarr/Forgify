@@ -5,47 +5,92 @@ from __future__ import annotations
 import math
 
 
+FAMILY_WEIGHTS = {
+    "pixel/residual": 0.18,
+    "structural/reference": 0.24,
+    "semantic": 0.24,
+    "encoded-data": 0.16,
+    "file-history": 0.10,
+    "copy-move": 0.08,
+}
+
+
+def _family_for(layer_id: str) -> str:
+    return {
+        "pixel": "pixel/residual", "deep-tamper-srm": "pixel/residual", "ml-classifier": "pixel/residual",
+        "layout": "semantic", "semantic": "semantic",
+        "qr-barcode": "encoded-data", "metadata": "file-history", "compression": "file-history",
+        "copy-move": "copy-move", "reference": "structural/reference",
+    }.get(layer_id, "file-history")
+
+
+def _finding_family(finding: dict) -> str | None:
+    code = str(finding.get("code", ""))
+    # Specific comparative findings must be classified before the generic
+    # REF-* structural bucket.
+    if code.startswith(("REF-FIELD", "REF-TEXT", "OCR_FIELD", "SEM-")):
+        return "semantic"
+    if code.startswith(("QR_", "REF-QR")):
+        return "encoded-data"
+    if code.startswith(("REF-", "PX-ELA", "SRM-")):
+        return "structural/reference" if code.startswith("REF-") else "pixel/residual"
+    return None
+
+
 def fuse(layer_results: list[dict], findings: list[dict]) -> dict:
     executed = [layer for layer in layer_results if layer.get("status") != "skipped"]
-    raw = sum(layer["weight"] * (0.55 + 0.45 * layer.get("confidence", 0.6)) for layer in executed) or 1.0
+    family_layers: dict[str, list[dict]] = {family: [] for family in FAMILY_WEIGHTS}
+    for layer in executed:
+        family_layers.setdefault(_family_for(layer["layer"]), []).append(layer)
+    family_findings: dict[str, int] = {family: 0 for family in FAMILY_WEIGHTS}
+    for item in findings:
+        family = _finding_family(item)
+        if family:
+            family_findings[family] += 1
 
+    # Within a family use the strongest calibrated member, with only a small
+    # diminishing boost for corroborating members. This prevents ELA+SRM+noise
+    # from behaving like three independent observations.
+    family_scores = {}
+    for family, members in family_layers.items():
+        values = sorted((float(m.get("score", 0)) for m in members), reverse=True)
+        if not values:
+            family_scores[family] = 0.0
+            continue
+        family_scores[family] = min(1.0, values[0] + sum(v * (0.12 / (i + 1)) for i, v in enumerate(values[1:], start=1)))
+        family_scores[family] = min(1.0, family_scores[family] + min(0.08, family_findings[family] * 0.01))
+    active_families = [family for family, score in family_scores.items() if score > 0]
+    family_mass = {family: FAMILY_WEIGHTS[family] * family_scores[family] for family in FAMILY_WEIGHTS}
+    mass = sum(family_mass.values())
     contributions = []
     for layer in layer_results:
-        skipped = layer.get("status") == "skipped"
-        effective = 0.0 if skipped else layer["weight"] * (0.55 + 0.45 * layer.get("confidence", 0.6)) / raw
-        contributions.append(
-            {
-                "layer": layer["layer"],
-                "name": layer["name"],
-                "weight": round(effective, 4),
-                "score": round(float(layer.get("score", 0)), 4),
-                "contribution": round(effective * float(layer.get("score", 0)), 4),
-                "status": layer.get("status", "pass"),
-            }
-        )
-
-    mass = sum(item["contribution"] for item in contributions)
+        family = _family_for(layer["layer"])
+        members = family_layers.get(family, [])
+        member_total = sum(float(m.get("score", 0)) for m in members) or 1.0
+        share = float(layer.get("score", 0)) / member_total if layer.get("status") != "skipped" else 0.0
+        contribution = family_mass.get(family, 0.0) * share
+        contributions.append({"layer": layer["layer"], "name": layer["name"], "weight": round(FAMILY_WEIGHTS.get(family, 0.0) * share, 4), "score": round(float(layer.get("score", 0)), 4), "contribution": round(contribution, 4), "status": layer.get("status", "pass")})
     risk = int(round(_calibrate(mass) * 100))
 
-    scores = [layer.get("score", 0.0) for layer in executed]
+    scores = [family_scores[family] for family in active_families]
     mean = sum(scores) / max(1, len(scores))
     variance = sum((value - mean) ** 2 for value in scores) / max(1, len(scores))
     stdev = math.sqrt(variance)
     agreement = round(max(0.0, 1 - stdev / 0.32), 3)
 
-    mean_confidence = sum(layer.get("confidence", 0.6) for layer in executed) / max(1, len(executed))
-    coverage = len(executed) / max(1, len(layer_results))
-    critical = len([f for f in findings if f.get("severity") in {"critical", "high"}])
-    confidence = round(min(0.98, 0.42 + mean_confidence * 0.34 + agreement * 0.16 + coverage * 0.12 + critical * 0.01), 3)
+    mean_confidence = sum(max((m.get("confidence", 0.0) for m in family_layers[family]), default=0.0) for family in active_families) / max(1, len(active_families))
+    coverage = len(active_families) / len(FAMILY_WEIGHTS)
+    cross_family_bonus = min(0.16, max(0, len(active_families) - 1) * 0.04)
+    confidence = round(min(0.98, 0.30 + mean_confidence * 0.26 + agreement * 0.12 + coverage * 0.16 + cross_family_bonus), 3)
 
     top = sorted(contributions, key=lambda item: item["contribution"], reverse=True)[:3]
     rationale = [
-        f"Weighted evidence mass = {round(mass, 4)} across {len(executed)} executed layers, "
+        f"Dependency-aware family evidence mass = {round(mass, 4)} across {len(active_families)} active families; correlated members are capped within each family, "
         f"calibrated through a logistic at midpoint 0.45 → risk {risk}/100.",
         "Dominant contributors: "
         + "; ".join(f"{item['name']} ({round(item['contribution'] * 100, 1)}%)" for item in top)
         + ".",
-        f"Layer agreement index {agreement} (σ = {round(stdev, 3)}).",
+        f"Family agreement index {agreement} (σ = {round(stdev, 3)}).",
         f"{len([f for f in findings if f.get('severity') in {'high', 'critical'}])} high-or-critical finding(s) recorded.",
     ]
 
@@ -57,6 +102,7 @@ def fuse(layer_results: list[dict], findings: list[dict]) -> dict:
         "entropy": 0.0,
         "alertCount": len([f for f in findings if f.get("severity") in {"high", "critical"}]),
         "contributions": contributions,
+        "familyEvidence": [{"family": family, "score": round(family_scores[family], 4), "weight": FAMILY_WEIGHTS[family], "contribution": round(family_mass[family], 4), "members": [layer["layer"] for layer in family_layers[family]], "findingCount": family_findings[family]} for family in FAMILY_WEIGHTS],
         "rationale": rationale,
     }
 

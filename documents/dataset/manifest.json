@@ -1,0 +1,6347 @@
+{
+  "dataset": "forgify-synthetic-forgery-v1",
+  "description": "Labelled synthetic document forgery dataset: 4 templates x 20 originals x 3 manipulations, with pixel-accurate masks.",
+  "generator": "documents/dataset/generate_dataset.py",
+  "seed_base": 20260101,
+  "doc_types": [
+    "certificate",
+    "invoice",
+    "marksheet",
+    "id_card"
+  ],
+  "manipulations": [
+    "whiteout",
+    "copy_move",
+    "text_replace"
+  ],
+  "per_doc_type": 20,
+  "expected": {
+    "originals": 80,
+    "forged": 240,
+    "masks": 240
+  },
+  "region_box_convention": "[x0, y0, x1, y1), half-open, pixel units",
+  "notes": "Synthetic and fictional throughout. No forensic scores are stored here.",
+  "samples": [
+    {
+      "id": "CERTIFICATE-000_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-000.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:0",
+      "attributes": {
+        "issuer": "HALCYON POLYTECHNIC",
+        "course": "B.E. Computer Science"
+      }
+    },
+    {
+      "id": "CERTIFICATE-000_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-000.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-000_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-000_whiteout.png",
+      "region_box": [
+        352,
+        288,
+        648,
+        330
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:0:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-000_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-000.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-000_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-000_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:0:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-000_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-000.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-000_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-000_text_replace.png",
+      "region_box": [
+        537,
+        554,
+        586,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:0:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-001_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-001.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:1",
+      "attributes": {
+        "issuer": "RIVERBANK INSTITUTE",
+        "course": "B.Sc. Statistics"
+      }
+    },
+    {
+      "id": "CERTIFICATE-001_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-001.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-001_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-001_whiteout.png",
+      "region_box": [
+        537,
+        479,
+        678,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:1:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-001_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-001.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-001_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-001_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:1:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-001_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-001.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-001_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-001_text_replace.png",
+      "region_box": [
+        67,
+        553,
+        146,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:1:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-002_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-002.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:2",
+      "attributes": {
+        "issuer": "NORTHFIELD ACADEMY",
+        "course": "BBA"
+      }
+    },
+    {
+      "id": "CERTIFICATE-002_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-002.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-002_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-002_whiteout.png",
+      "region_box": [
+        67,
+        553,
+        146,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:2:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-002_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-002.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-002_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-002_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:2:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-002_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-002.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-002_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-002_text_replace.png",
+      "region_box": [
+        67,
+        480,
+        217,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:2:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-003_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-003.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:3",
+      "attributes": {
+        "issuer": "HALCYON POLYTECHNIC",
+        "course": "B.E. Computer Science"
+      }
+    },
+    {
+      "id": "CERTIFICATE-003_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-003.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-003_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-003_whiteout.png",
+      "region_box": [
+        537,
+        479,
+        678,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:3:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-003_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-003.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-003_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-003_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:3:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-003_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-003.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-003_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-003_text_replace.png",
+      "region_box": [
+        537,
+        479,
+        678,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:3:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-004_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-004.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:4",
+      "attributes": {
+        "issuer": "RIVERBANK INSTITUTE",
+        "course": "B.Tech Information Technology"
+      }
+    },
+    {
+      "id": "CERTIFICATE-004_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-004.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-004_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-004_whiteout.png",
+      "region_box": [
+        373,
+        288,
+        627,
+        330
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:4:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-004_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-004.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-004_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-004_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:4:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-004_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-004.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-004_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-004_text_replace.png",
+      "region_box": [
+        537,
+        554,
+        586,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:4:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-005_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-005.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:5",
+      "attributes": {
+        "issuer": "NORTHFIELD ACADEMY",
+        "course": "B.Sc. Statistics"
+      }
+    },
+    {
+      "id": "CERTIFICATE-005_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-005.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-005_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-005_whiteout.png",
+      "region_box": [
+        67,
+        553,
+        146,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:5:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-005_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-005.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-005_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-005_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:5:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-005_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-005.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-005_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-005_text_replace.png",
+      "region_box": [
+        361,
+        288,
+        640,
+        330
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:5:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-006_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-006.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:6",
+      "attributes": {
+        "issuer": "HALCYON POLYTECHNIC",
+        "course": "B.Sc. Physics"
+      }
+    },
+    {
+      "id": "CERTIFICATE-006_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-006.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-006_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-006_whiteout.png",
+      "region_box": [
+        395,
+        288,
+        605,
+        330
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:6:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-006_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-006.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-006_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-006_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:6:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-006_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-006.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-006_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-006_text_replace.png",
+      "region_box": [
+        67,
+        480,
+        217,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:6:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-007_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-007.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:7",
+      "attributes": {
+        "issuer": "RIVERBANK INSTITUTE",
+        "course": "B.E. Computer Science"
+      }
+    },
+    {
+      "id": "CERTIFICATE-007_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-007.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-007_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-007_whiteout.png",
+      "region_box": [
+        67,
+        553,
+        146,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:7:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-007_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-007.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-007_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-007_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:7:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-007_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-007.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-007_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-007_text_replace.png",
+      "region_box": [
+        67,
+        480,
+        217,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:7:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-008_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-008.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:8",
+      "attributes": {
+        "issuer": "RIVERBANK INSTITUTE",
+        "course": "B.A. Economics"
+      }
+    },
+    {
+      "id": "CERTIFICATE-008_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-008.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-008_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-008_whiteout.png",
+      "region_box": [
+        67,
+        553,
+        146,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:8:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-008_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-008.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-008_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-008_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:8:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-008_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-008.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-008_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-008_text_replace.png",
+      "region_box": [
+        67,
+        480,
+        217,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:8:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-009_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-009.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:9",
+      "attributes": {
+        "issuer": "NORTHFIELD ACADEMY",
+        "course": "B.Sc. Statistics"
+      }
+    },
+    {
+      "id": "CERTIFICATE-009_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-009.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-009_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-009_whiteout.png",
+      "region_box": [
+        67,
+        553,
+        146,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:9:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-009_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-009.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-009_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-009_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:9:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-009_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-009.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-009_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-009_text_replace.png",
+      "region_box": [
+        537,
+        554,
+        586,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:9:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-010_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-010.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:10",
+      "attributes": {
+        "issuer": "RIVERBANK INSTITUTE",
+        "course": "B.Sc. Statistics"
+      }
+    },
+    {
+      "id": "CERTIFICATE-010_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-010.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-010_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-010_whiteout.png",
+      "region_box": [
+        67,
+        553,
+        146,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:10:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-010_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-010.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-010_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-010_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:10:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-010_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-010.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-010_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-010_text_replace.png",
+      "region_box": [
+        67,
+        553,
+        146,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:10:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-011_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-011.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:11",
+      "attributes": {
+        "issuer": "RIVERBANK INSTITUTE",
+        "course": "B.Sc. Statistics"
+      }
+    },
+    {
+      "id": "CERTIFICATE-011_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-011.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-011_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-011_whiteout.png",
+      "region_box": [
+        367,
+        288,
+        634,
+        330
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:11:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-011_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-011.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-011_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-011_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:11:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-011_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-011.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-011_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-011_text_replace.png",
+      "region_box": [
+        537,
+        554,
+        586,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:11:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-012_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-012.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:12",
+      "attributes": {
+        "issuer": "SYNTHETIC MODEL UNIVERSITY",
+        "course": "B.Tech Information Technology"
+      }
+    },
+    {
+      "id": "CERTIFICATE-012_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-012.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-012_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-012_whiteout.png",
+      "region_box": [
+        67,
+        553,
+        146,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:12:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-012_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-012.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-012_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-012_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:12:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-012_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-012.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-012_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-012_text_replace.png",
+      "region_box": [
+        67,
+        480,
+        217,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:12:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-013_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-013.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:13",
+      "attributes": {
+        "issuer": "ST. ARDEN COLLEGE",
+        "course": "BBA"
+      }
+    },
+    {
+      "id": "CERTIFICATE-013_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-013.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-013_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-013_whiteout.png",
+      "region_box": [
+        537,
+        479,
+        678,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:13:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-013_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-013.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-013_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-013_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:13:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-013_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-013.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-013_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-013_text_replace.png",
+      "region_box": [
+        537,
+        554,
+        586,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:13:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-014_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-014.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:14",
+      "attributes": {
+        "issuer": "NORTHFIELD ACADEMY",
+        "course": "B.Sc. Physics"
+      }
+    },
+    {
+      "id": "CERTIFICATE-014_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-014.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-014_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-014_whiteout.png",
+      "region_box": [
+        374,
+        288,
+        626,
+        330
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:14:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-014_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-014.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-014_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-014_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:14:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-014_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-014.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-014_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-014_text_replace.png",
+      "region_box": [
+        537,
+        554,
+        586,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:14:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-015_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-015.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:15",
+      "attributes": {
+        "issuer": "SYNTHETIC MODEL UNIVERSITY",
+        "course": "BBA"
+      }
+    },
+    {
+      "id": "CERTIFICATE-015_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-015.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-015_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-015_whiteout.png",
+      "region_box": [
+        67,
+        553,
+        146,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:15:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-015_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-015.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-015_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-015_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:15:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-015_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-015.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-015_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-015_text_replace.png",
+      "region_box": [
+        67,
+        480,
+        217,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:15:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-016_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-016.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:16",
+      "attributes": {
+        "issuer": "ST. ARDEN COLLEGE",
+        "course": "B.Tech Information Technology"
+      }
+    },
+    {
+      "id": "CERTIFICATE-016_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-016.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-016_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-016_whiteout.png",
+      "region_box": [
+        537,
+        479,
+        678,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:16:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-016_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-016.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-016_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-016_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:16:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-016_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-016.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-016_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-016_text_replace.png",
+      "region_box": [
+        537,
+        554,
+        586,
+        575
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:16:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-017_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-017.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:17",
+      "attributes": {
+        "issuer": "HALCYON POLYTECHNIC",
+        "course": "B.Tech Information Technology"
+      }
+    },
+    {
+      "id": "CERTIFICATE-017_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-017.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-017_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-017_whiteout.png",
+      "region_box": [
+        537,
+        479,
+        678,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:17:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-017_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-017.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-017_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-017_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:17:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-017_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-017.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-017_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-017_text_replace.png",
+      "region_box": [
+        67,
+        480,
+        217,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:17:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-018_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-018.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:18",
+      "attributes": {
+        "issuer": "SYNTHETIC MODEL UNIVERSITY",
+        "course": "B.A. Economics"
+      }
+    },
+    {
+      "id": "CERTIFICATE-018_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-018.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-018_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-018_whiteout.png",
+      "region_box": [
+        379,
+        288,
+        622,
+        321
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:18:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-018_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-018.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-018_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-018_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:18:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-018_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-018.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-018_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-018_text_replace.png",
+      "region_box": [
+        67,
+        480,
+        217,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:18:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-019_none",
+      "doc_type": "certificate",
+      "manipulation": "none",
+      "original_path": "original/certificate/CERTIFICATE-019.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:19",
+      "attributes": {
+        "issuer": "SYNTHETIC MODEL UNIVERSITY",
+        "course": "B.Sc. Physics"
+      }
+    },
+    {
+      "id": "CERTIFICATE-019_whiteout",
+      "doc_type": "certificate",
+      "manipulation": "whiteout",
+      "original_path": "original/certificate/CERTIFICATE-019.png",
+      "forged_path": "forged/whiteout/CERTIFICATE-019_whiteout.png",
+      "mask_path": "masks/whiteout/CERTIFICATE-019_whiteout.png",
+      "region_box": [
+        537,
+        479,
+        678,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:19:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-019_copy_move",
+      "doc_type": "certificate",
+      "manipulation": "copy_move",
+      "original_path": "original/certificate/CERTIFICATE-019.png",
+      "forged_path": "forged/copy_move/CERTIFICATE-019_copy_move.png",
+      "mask_path": "masks/copy_move/CERTIFICATE-019_copy_move.png",
+      "region_box": [
+        600,
+        740,
+        850,
+        788
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:19:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "CERTIFICATE-019_text_replace",
+      "doc_type": "certificate",
+      "manipulation": "text_replace",
+      "original_path": "original/certificate/CERTIFICATE-019.png",
+      "forged_path": "forged/text_replace/CERTIFICATE-019_text_replace.png",
+      "mask_path": "masks/text_replace/CERTIFICATE-019_text_replace.png",
+      "region_box": [
+        67,
+        480,
+        217,
+        501
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:certificate:19:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-000_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-000.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:0",
+      "attributes": {
+        "vendor": "SUNRISE RETAIL LLP",
+        "buyer": "MERIDIAN LOGISTICS PVT LTD",
+        "subtotal": 41150,
+        "grand_total": 46088
+      }
+    },
+    {
+      "id": "INVOICE-000_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-000.png",
+      "forged_path": "forged/whiteout/INVOICE-000_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-000_whiteout.png",
+      "region_box": [
+        617,
+        179,
+        808,
+        201
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:0:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-000_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-000.png",
+      "forged_path": "forged/copy_move/INVOICE-000_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-000_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:0:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-000_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-000.png",
+      "forged_path": "forged/text_replace/INVOICE-000_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-000_text_replace.png",
+      "region_box": [
+        617,
+        179,
+        808,
+        201
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:0:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-001_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-001.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:1",
+      "attributes": {
+        "vendor": "BLUE HARBOR TRADING",
+        "buyer": "ORCHARD FOODS LTD",
+        "subtotal": 14420,
+        "grand_total": 16150
+      }
+    },
+    {
+      "id": "INVOICE-001_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-001.png",
+      "forged_path": "forged/whiteout/INVOICE-001_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-001_whiteout.png",
+      "region_box": [
+        47,
+        148,
+        357,
+        168
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:1:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-001_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-001.png",
+      "forged_path": "forged/copy_move/INVOICE-001_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-001_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:1:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-001_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-001.png",
+      "forged_path": "forged/text_replace/INVOICE-001_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-001_text_replace.png",
+      "region_box": [
+        757,
+        598,
+        829,
+        618
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:1:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-002_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-002.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:2",
+      "attributes": {
+        "vendor": "ORCHARD FOODS LTD",
+        "buyer": "MERIDIAN LOGISTICS PVT LTD",
+        "subtotal": 13850,
+        "grand_total": 16343
+      }
+    },
+    {
+      "id": "INVOICE-002_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-002.png",
+      "forged_path": "forged/whiteout/INVOICE-002_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-002_whiteout.png",
+      "region_box": [
+        617,
+        179,
+        810,
+        201
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:2:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-002_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-002.png",
+      "forged_path": "forged/copy_move/INVOICE-002_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-002_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:2:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-002_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-002.png",
+      "forged_path": "forged/text_replace/INVOICE-002_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-002_text_replace.png",
+      "region_box": [
+        757,
+        522,
+        829,
+        542
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:2:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-003_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-003.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:3",
+      "attributes": {
+        "vendor": "ORCHARD FOODS LTD",
+        "buyer": "KESTREL ENGINEERING WORKS",
+        "subtotal": 15360,
+        "grand_total": 17203
+      }
+    },
+    {
+      "id": "INVOICE-003_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-003.png",
+      "forged_path": "forged/whiteout/INVOICE-003_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-003_whiteout.png",
+      "region_box": [
+        47,
+        148,
+        357,
+        168
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:3:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-003_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-003.png",
+      "forged_path": "forged/copy_move/INVOICE-003_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-003_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:3:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-003_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-003.png",
+      "forged_path": "forged/text_replace/INVOICE-003_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-003_text_replace.png",
+      "region_box": [
+        757,
+        598,
+        829,
+        618
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:3:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-004_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-004.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:4",
+      "attributes": {
+        "vendor": "KESTREL ENGINEERING WORKS",
+        "buyer": "ORCHARD FOODS LTD",
+        "subtotal": 22200,
+        "grand_total": 23310
+      }
+    },
+    {
+      "id": "INVOICE-004_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-004.png",
+      "forged_path": "forged/whiteout/INVOICE-004_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-004_whiteout.png",
+      "region_box": [
+        47,
+        148,
+        357,
+        168
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:4:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-004_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-004.png",
+      "forged_path": "forged/copy_move/INVOICE-004_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-004_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:4:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-004_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-004.png",
+      "forged_path": "forged/text_replace/INVOICE-004_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-004_text_replace.png",
+      "region_box": [
+        757,
+        522,
+        829,
+        542
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:4:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-005_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-005.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:5",
+      "attributes": {
+        "vendor": "BLUE HARBOR TRADING",
+        "buyer": "MERIDIAN LOGISTICS PVT LTD",
+        "subtotal": 19760,
+        "grand_total": 20748
+      }
+    },
+    {
+      "id": "INVOICE-005_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-005.png",
+      "forged_path": "forged/whiteout/INVOICE-005_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-005_whiteout.png",
+      "region_box": [
+        617,
+        179,
+        810,
+        201
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:5:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-005_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-005.png",
+      "forged_path": "forged/copy_move/INVOICE-005_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-005_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:5:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-005_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-005.png",
+      "forged_path": "forged/text_replace/INVOICE-005_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-005_text_replace.png",
+      "region_box": [
+        757,
+        522,
+        829,
+        542
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:5:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-006_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-006.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:6",
+      "attributes": {
+        "vendor": "ORCHARD FOODS LTD",
+        "buyer": "MERIDIAN LOGISTICS PVT LTD",
+        "subtotal": 13900,
+        "grand_total": 14595
+      }
+    },
+    {
+      "id": "INVOICE-006_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-006.png",
+      "forged_path": "forged/whiteout/INVOICE-006_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-006_whiteout.png",
+      "region_box": [
+        617,
+        179,
+        810,
+        201
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:6:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-006_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-006.png",
+      "forged_path": "forged/copy_move/INVOICE-006_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-006_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:6:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-006_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-006.png",
+      "forged_path": "forged/text_replace/INVOICE-006_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-006_text_replace.png",
+      "region_box": [
+        757,
+        598,
+        829,
+        618
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:6:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-007_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-007.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:7",
+      "attributes": {
+        "vendor": "NORTHWIND SUPPLY CHAND",
+        "buyer": "SUNRISE RETAIL LLP",
+        "subtotal": 27640,
+        "grand_total": 29022
+      }
+    },
+    {
+      "id": "INVOICE-007_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-007.png",
+      "forged_path": "forged/whiteout/INVOICE-007_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-007_whiteout.png",
+      "region_box": [
+        617,
+        179,
+        810,
+        201
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:7:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-007_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-007.png",
+      "forged_path": "forged/copy_move/INVOICE-007_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-007_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:7:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-007_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-007.png",
+      "forged_path": "forged/text_replace/INVOICE-007_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-007_text_replace.png",
+      "region_box": [
+        757,
+        598,
+        829,
+        618
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:7:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-008_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-008.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:8",
+      "attributes": {
+        "vendor": "KESTREL ENGINEERING WORKS",
+        "buyer": "MERIDIAN LOGISTICS PVT LTD",
+        "subtotal": 48250,
+        "grand_total": 54040
+      }
+    },
+    {
+      "id": "INVOICE-008_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-008.png",
+      "forged_path": "forged/whiteout/INVOICE-008_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-008_whiteout.png",
+      "region_box": [
+        617,
+        179,
+        810,
+        201
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:8:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-008_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-008.png",
+      "forged_path": "forged/copy_move/INVOICE-008_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-008_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:8:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-008_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-008.png",
+      "forged_path": "forged/text_replace/INVOICE-008_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-008_text_replace.png",
+      "region_box": [
+        757,
+        598,
+        829,
+        618
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:8:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-009_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-009.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:9",
+      "attributes": {
+        "vendor": "SUNRISE RETAIL LLP",
+        "buyer": "MERIDIAN LOGISTICS PVT LTD",
+        "subtotal": 13090,
+        "grand_total": 13744
+      }
+    },
+    {
+      "id": "INVOICE-009_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-009.png",
+      "forged_path": "forged/whiteout/INVOICE-009_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-009_whiteout.png",
+      "region_box": [
+        617,
+        147,
+        816,
+        169
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:9:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-009_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-009.png",
+      "forged_path": "forged/copy_move/INVOICE-009_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-009_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:9:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-009_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-009.png",
+      "forged_path": "forged/text_replace/INVOICE-009_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-009_text_replace.png",
+      "region_box": [
+        47,
+        148,
+        357,
+        168
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:9:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-010_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-010.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:10",
+      "attributes": {
+        "vendor": "MERIDIAN LOGISTICS PVT LTD",
+        "buyer": "KESTREL ENGINEERING WORKS",
+        "subtotal": 4440,
+        "grand_total": 4662
+      }
+    },
+    {
+      "id": "INVOICE-010_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-010.png",
+      "forged_path": "forged/whiteout/INVOICE-010_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-010_whiteout.png",
+      "region_box": [
+        47,
+        148,
+        357,
+        168
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:10:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-010_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-010.png",
+      "forged_path": "forged/copy_move/INVOICE-010_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-010_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:10:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-010_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-010.png",
+      "forged_path": "forged/text_replace/INVOICE-010_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-010_text_replace.png",
+      "region_box": [
+        757,
+        522,
+        816,
+        542
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:10:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-011_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-011.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:11",
+      "attributes": {
+        "vendor": "SUNRISE RETAIL LLP",
+        "buyer": "BLUE HARBOR TRADING",
+        "subtotal": 44290,
+        "grand_total": 52262
+      }
+    },
+    {
+      "id": "INVOICE-011_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-011.png",
+      "forged_path": "forged/whiteout/INVOICE-011_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-011_whiteout.png",
+      "region_box": [
+        617,
+        147,
+        816,
+        169
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:11:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-011_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-011.png",
+      "forged_path": "forged/copy_move/INVOICE-011_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-011_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:11:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-011_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-011.png",
+      "forged_path": "forged/text_replace/INVOICE-011_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-011_text_replace.png",
+      "region_box": [
+        47,
+        148,
+        357,
+        168
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:11:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-012_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-012.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:12",
+      "attributes": {
+        "vendor": "SUNRISE RETAIL LLP",
+        "buyer": "KESTREL ENGINEERING WORKS",
+        "subtotal": 24900,
+        "grand_total": 26145
+      }
+    },
+    {
+      "id": "INVOICE-012_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-012.png",
+      "forged_path": "forged/whiteout/INVOICE-012_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-012_whiteout.png",
+      "region_box": [
+        47,
+        148,
+        357,
+        168
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:12:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-012_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-012.png",
+      "forged_path": "forged/copy_move/INVOICE-012_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-012_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:12:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-012_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-012.png",
+      "forged_path": "forged/text_replace/INVOICE-012_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-012_text_replace.png",
+      "region_box": [
+        757,
+        598,
+        829,
+        618
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:12:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-013_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-013.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:13",
+      "attributes": {
+        "vendor": "KESTREL ENGINEERING WORKS",
+        "buyer": "BLUE HARBOR TRADING",
+        "subtotal": 24900,
+        "grand_total": 27888
+      }
+    },
+    {
+      "id": "INVOICE-013_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-013.png",
+      "forged_path": "forged/whiteout/INVOICE-013_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-013_whiteout.png",
+      "region_box": [
+        47,
+        148,
+        357,
+        168
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:13:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-013_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-013.png",
+      "forged_path": "forged/copy_move/INVOICE-013_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-013_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:13:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-013_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-013.png",
+      "forged_path": "forged/text_replace/INVOICE-013_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-013_text_replace.png",
+      "region_box": [
+        47,
+        148,
+        357,
+        168
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:13:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-014_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-014.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:14",
+      "attributes": {
+        "vendor": "SUNRISE RETAIL LLP",
+        "buyer": "NORTHWIND SUPPLY CHAND",
+        "subtotal": 17060,
+        "grand_total": 19107
+      }
+    },
+    {
+      "id": "INVOICE-014_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-014.png",
+      "forged_path": "forged/whiteout/INVOICE-014_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-014_whiteout.png",
+      "region_box": [
+        617,
+        147,
+        816,
+        169
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:14:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-014_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-014.png",
+      "forged_path": "forged/copy_move/INVOICE-014_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-014_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:14:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-014_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-014.png",
+      "forged_path": "forged/text_replace/INVOICE-014_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-014_text_replace.png",
+      "region_box": [
+        617,
+        147,
+        816,
+        169
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:14:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-015_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-015.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:15",
+      "attributes": {
+        "vendor": "SUNRISE RETAIL LLP",
+        "buyer": "NORTHWIND SUPPLY CHAND",
+        "subtotal": 29450,
+        "grand_total": 32984
+      }
+    },
+    {
+      "id": "INVOICE-015_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-015.png",
+      "forged_path": "forged/whiteout/INVOICE-015_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-015_whiteout.png",
+      "region_box": [
+        47,
+        148,
+        357,
+        168
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:15:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-015_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-015.png",
+      "forged_path": "forged/copy_move/INVOICE-015_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-015_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:15:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-015_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-015.png",
+      "forged_path": "forged/text_replace/INVOICE-015_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-015_text_replace.png",
+      "region_box": [
+        757,
+        598,
+        829,
+        618
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:15:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-016_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-016.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:16",
+      "attributes": {
+        "vendor": "KESTREL ENGINEERING WORKS",
+        "buyer": "ORCHARD FOODS LTD",
+        "subtotal": 10410,
+        "grand_total": 11659
+      }
+    },
+    {
+      "id": "INVOICE-016_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-016.png",
+      "forged_path": "forged/whiteout/INVOICE-016_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-016_whiteout.png",
+      "region_box": [
+        617,
+        179,
+        810,
+        201
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:16:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-016_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-016.png",
+      "forged_path": "forged/copy_move/INVOICE-016_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-016_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:16:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-016_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-016.png",
+      "forged_path": "forged/text_replace/INVOICE-016_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-016_text_replace.png",
+      "region_box": [
+        757,
+        522,
+        829,
+        542
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:16:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-017_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-017.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:17",
+      "attributes": {
+        "vendor": "BLUE HARBOR TRADING",
+        "buyer": "ORCHARD FOODS LTD",
+        "subtotal": 31150,
+        "grand_total": 32708
+      }
+    },
+    {
+      "id": "INVOICE-017_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-017.png",
+      "forged_path": "forged/whiteout/INVOICE-017_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-017_whiteout.png",
+      "region_box": [
+        617,
+        179,
+        810,
+        201
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:17:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-017_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-017.png",
+      "forged_path": "forged/copy_move/INVOICE-017_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-017_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:17:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-017_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-017.png",
+      "forged_path": "forged/text_replace/INVOICE-017_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-017_text_replace.png",
+      "region_box": [
+        757,
+        598,
+        829,
+        618
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:17:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-018_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-018.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:18",
+      "attributes": {
+        "vendor": "SUNRISE RETAIL LLP",
+        "buyer": "ORCHARD FOODS LTD",
+        "subtotal": 28620,
+        "grand_total": 30051
+      }
+    },
+    {
+      "id": "INVOICE-018_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-018.png",
+      "forged_path": "forged/whiteout/INVOICE-018_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-018_whiteout.png",
+      "region_box": [
+        617,
+        147,
+        816,
+        169
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:18:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-018_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-018.png",
+      "forged_path": "forged/copy_move/INVOICE-018_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-018_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:18:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-018_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-018.png",
+      "forged_path": "forged/text_replace/INVOICE-018_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-018_text_replace.png",
+      "region_box": [
+        757,
+        598,
+        829,
+        618
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:18:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-019_none",
+      "doc_type": "invoice",
+      "manipulation": "none",
+      "original_path": "original/invoice/INVOICE-019.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:19",
+      "attributes": {
+        "vendor": "BLUE HARBOR TRADING",
+        "buyer": "MERIDIAN LOGISTICS PVT LTD",
+        "subtotal": 12130,
+        "grand_total": 13586
+      }
+    },
+    {
+      "id": "INVOICE-019_whiteout",
+      "doc_type": "invoice",
+      "manipulation": "whiteout",
+      "original_path": "original/invoice/INVOICE-019.png",
+      "forged_path": "forged/whiteout/INVOICE-019_whiteout.png",
+      "mask_path": "masks/whiteout/INVOICE-019_whiteout.png",
+      "region_box": [
+        617,
+        179,
+        810,
+        201
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:19:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-019_copy_move",
+      "doc_type": "invoice",
+      "manipulation": "copy_move",
+      "original_path": "original/invoice/INVOICE-019.png",
+      "forged_path": "forged/copy_move/INVOICE-019_copy_move.png",
+      "mask_path": "masks/copy_move/INVOICE-019_copy_move.png",
+      "region_box": [
+        624,
+        906,
+        772,
+        1054
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:19:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "INVOICE-019_text_replace",
+      "doc_type": "invoice",
+      "manipulation": "text_replace",
+      "original_path": "original/invoice/INVOICE-019.png",
+      "forged_path": "forged/text_replace/INVOICE-019_text_replace.png",
+      "mask_path": "masks/text_replace/INVOICE-019_text_replace.png",
+      "region_box": [
+        617,
+        147,
+        816,
+        169
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:invoice:19:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-000_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-000.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:0",
+      "attributes": {
+        "school": "HALCYON POLYTECHNIC",
+        "total": 352,
+        "maximum": 500,
+        "percent": 70
+      }
+    },
+    {
+      "id": "MARKSHEET-000_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-000.png",
+      "forged_path": "forged/whiteout/MARKSHEET-000_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-000_whiteout.png",
+      "region_box": [
+        617,
+        161,
+        745,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:0:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-000_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-000.png",
+      "forged_path": "forged/copy_move/MARKSHEET-000_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-000_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:0:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-000_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-000.png",
+      "forged_path": "forged/text_replace/MARKSHEET-000_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-000_text_replace.png",
+      "region_box": [
+        257,
+        162,
+        395,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:0:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-001_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-001.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:1",
+      "attributes": {
+        "school": "ST. ARDEN COLLEGE",
+        "total": 408,
+        "maximum": 500,
+        "percent": 82
+      }
+    },
+    {
+      "id": "MARKSHEET-001_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-001.png",
+      "forged_path": "forged/whiteout/MARKSHEET-001_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-001_whiteout.png",
+      "region_box": [
+        257,
+        125,
+        424,
+        147
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:1:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-001_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-001.png",
+      "forged_path": "forged/copy_move/MARKSHEET-001_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-001_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:1:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-001_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-001.png",
+      "forged_path": "forged/text_replace/MARKSHEET-001_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-001_text_replace.png",
+      "region_box": [
+        625,
+        620,
+        669,
+        639
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:1:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-002_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-002.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:2",
+      "attributes": {
+        "school": "SYNTHETIC MODEL UNIVERSITY",
+        "total": 355,
+        "maximum": 500,
+        "percent": 71
+      }
+    },
+    {
+      "id": "MARKSHEET-002_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-002.png",
+      "forged_path": "forged/whiteout/MARKSHEET-002_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-002_whiteout.png",
+      "region_box": [
+        617,
+        161,
+        745,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:2:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-002_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-002.png",
+      "forged_path": "forged/copy_move/MARKSHEET-002_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-002_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:2:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-002_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-002.png",
+      "forged_path": "forged/text_replace/MARKSHEET-002_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-002_text_replace.png",
+      "region_box": [
+        617,
+        688,
+        652,
+        709
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:2:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-003_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-003.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:3",
+      "attributes": {
+        "school": "SYNTHETIC MODEL UNIVERSITY",
+        "total": 330,
+        "maximum": 500,
+        "percent": 66
+      }
+    },
+    {
+      "id": "MARKSHEET-003_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-003.png",
+      "forged_path": "forged/whiteout/MARKSHEET-003_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-003_whiteout.png",
+      "region_box": [
+        256,
+        125,
+        437,
+        147
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:3:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-003_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-003.png",
+      "forged_path": "forged/copy_move/MARKSHEET-003_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-003_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:3:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-003_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-003.png",
+      "forged_path": "forged/text_replace/MARKSHEET-003_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-003_text_replace.png",
+      "region_box": [
+        257,
+        162,
+        395,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:3:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-004_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-004.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:4",
+      "attributes": {
+        "school": "ST. ARDEN COLLEGE",
+        "total": 393,
+        "maximum": 600,
+        "percent": 66
+      }
+    },
+    {
+      "id": "MARKSHEET-004_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-004.png",
+      "forged_path": "forged/whiteout/MARKSHEET-004_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-004_whiteout.png",
+      "region_box": [
+        617,
+        161,
+        745,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:4:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-004_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-004.png",
+      "forged_path": "forged/copy_move/MARKSHEET-004_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-004_copy_move.png",
+      "region_box": [
+        620,
+        852,
+        850,
+        900
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:4:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-004_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-004.png",
+      "forged_path": "forged/text_replace/MARKSHEET-004_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-004_text_replace.png",
+      "region_box": [
+        617,
+        734,
+        652,
+        755
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:4:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-005_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-005.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:5",
+      "attributes": {
+        "school": "SYNTHETIC MODEL UNIVERSITY",
+        "total": 313,
+        "maximum": 500,
+        "percent": 63
+      }
+    },
+    {
+      "id": "MARKSHEET-005_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-005.png",
+      "forged_path": "forged/whiteout/MARKSHEET-005_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-005_whiteout.png",
+      "region_box": [
+        257,
+        125,
+        411,
+        151
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:5:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-005_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-005.png",
+      "forged_path": "forged/copy_move/MARKSHEET-005_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-005_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:5:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-005_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-005.png",
+      "forged_path": "forged/text_replace/MARKSHEET-005_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-005_text_replace.png",
+      "region_box": [
+        617,
+        688,
+        652,
+        709
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:5:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-006_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-006.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:6",
+      "attributes": {
+        "school": "ST. ARDEN COLLEGE",
+        "total": 417,
+        "maximum": 600,
+        "percent": 70
+      }
+    },
+    {
+      "id": "MARKSHEET-006_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-006.png",
+      "forged_path": "forged/whiteout/MARKSHEET-006_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-006_whiteout.png",
+      "region_box": [
+        617,
+        161,
+        745,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:6:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-006_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-006.png",
+      "forged_path": "forged/copy_move/MARKSHEET-006_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-006_copy_move.png",
+      "region_box": [
+        620,
+        852,
+        850,
+        900
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:6:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-006_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-006.png",
+      "forged_path": "forged/text_replace/MARKSHEET-006_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-006_text_replace.png",
+      "region_box": [
+        257,
+        162,
+        395,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:6:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-007_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-007.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:7",
+      "attributes": {
+        "school": "RIVERBANK INSTITUTE",
+        "total": 424,
+        "maximum": 600,
+        "percent": 71
+      }
+    },
+    {
+      "id": "MARKSHEET-007_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-007.png",
+      "forged_path": "forged/whiteout/MARKSHEET-007_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-007_whiteout.png",
+      "region_box": [
+        617,
+        161,
+        745,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:7:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-007_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-007.png",
+      "forged_path": "forged/copy_move/MARKSHEET-007_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-007_copy_move.png",
+      "region_box": [
+        620,
+        852,
+        850,
+        900
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:7:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-007_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-007.png",
+      "forged_path": "forged/text_replace/MARKSHEET-007_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-007_text_replace.png",
+      "region_box": [
+        257,
+        162,
+        395,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:7:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-008_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-008.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:8",
+      "attributes": {
+        "school": "ST. ARDEN COLLEGE",
+        "total": 414,
+        "maximum": 600,
+        "percent": 69
+      }
+    },
+    {
+      "id": "MARKSHEET-008_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-008.png",
+      "forged_path": "forged/whiteout/MARKSHEET-008_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-008_whiteout.png",
+      "region_box": [
+        257,
+        125,
+        404,
+        151
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:8:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-008_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-008.png",
+      "forged_path": "forged/copy_move/MARKSHEET-008_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-008_copy_move.png",
+      "region_box": [
+        620,
+        852,
+        850,
+        900
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:8:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-008_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-008.png",
+      "forged_path": "forged/text_replace/MARKSHEET-008_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-008_text_replace.png",
+      "region_box": [
+        257,
+        125,
+        404,
+        151
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:8:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-009_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-009.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:9",
+      "attributes": {
+        "school": "SYNTHETIC MODEL UNIVERSITY",
+        "total": 350,
+        "maximum": 500,
+        "percent": 70
+      }
+    },
+    {
+      "id": "MARKSHEET-009_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-009.png",
+      "forged_path": "forged/whiteout/MARKSHEET-009_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-009_whiteout.png",
+      "region_box": [
+        617,
+        161,
+        744,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:9:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-009_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-009.png",
+      "forged_path": "forged/copy_move/MARKSHEET-009_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-009_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:9:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-009_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-009.png",
+      "forged_path": "forged/text_replace/MARKSHEET-009_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-009_text_replace.png",
+      "region_box": [
+        617,
+        688,
+        652,
+        709
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:9:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-010_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-010.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:10",
+      "attributes": {
+        "school": "NORTHFIELD ACADEMY",
+        "total": 354,
+        "maximum": 500,
+        "percent": 71
+      }
+    },
+    {
+      "id": "MARKSHEET-010_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-010.png",
+      "forged_path": "forged/whiteout/MARKSHEET-010_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-010_whiteout.png",
+      "region_box": [
+        257,
+        125,
+        403,
+        151
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:10:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-010_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-010.png",
+      "forged_path": "forged/copy_move/MARKSHEET-010_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-010_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:10:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-010_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-010.png",
+      "forged_path": "forged/text_replace/MARKSHEET-010_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-010_text_replace.png",
+      "region_box": [
+        257,
+        162,
+        395,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:10:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-011_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-011.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:11",
+      "attributes": {
+        "school": "SYNTHETIC MODEL UNIVERSITY",
+        "total": 400,
+        "maximum": 600,
+        "percent": 67
+      }
+    },
+    {
+      "id": "MARKSHEET-011_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-011.png",
+      "forged_path": "forged/whiteout/MARKSHEET-011_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-011_whiteout.png",
+      "region_box": [
+        617,
+        161,
+        744,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:11:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-011_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-011.png",
+      "forged_path": "forged/copy_move/MARKSHEET-011_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-011_copy_move.png",
+      "region_box": [
+        620,
+        852,
+        850,
+        900
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:11:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-011_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-011.png",
+      "forged_path": "forged/text_replace/MARKSHEET-011_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-011_text_replace.png",
+      "region_box": [
+        257,
+        125,
+        416,
+        151
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:11:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-012_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-012.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:12",
+      "attributes": {
+        "school": "NORTHFIELD ACADEMY",
+        "total": 295,
+        "maximum": 500,
+        "percent": 59
+      }
+    },
+    {
+      "id": "MARKSHEET-012_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-012.png",
+      "forged_path": "forged/whiteout/MARKSHEET-012_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-012_whiteout.png",
+      "region_box": [
+        617,
+        161,
+        745,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:12:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-012_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-012.png",
+      "forged_path": "forged/copy_move/MARKSHEET-012_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-012_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:12:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-012_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-012.png",
+      "forged_path": "forged/text_replace/MARKSHEET-012_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-012_text_replace.png",
+      "region_box": [
+        257,
+        162,
+        395,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:12:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-013_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-013.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:13",
+      "attributes": {
+        "school": "ST. ARDEN COLLEGE",
+        "total": 488,
+        "maximum": 600,
+        "percent": 81
+      }
+    },
+    {
+      "id": "MARKSHEET-013_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-013.png",
+      "forged_path": "forged/whiteout/MARKSHEET-013_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-013_whiteout.png",
+      "region_box": [
+        257,
+        125,
+        391,
+        151
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:13:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-013_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-013.png",
+      "forged_path": "forged/copy_move/MARKSHEET-013_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-013_copy_move.png",
+      "region_box": [
+        620,
+        852,
+        850,
+        900
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:13:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-013_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-013.png",
+      "forged_path": "forged/text_replace/MARKSHEET-013_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-013_text_replace.png",
+      "region_box": [
+        617,
+        161,
+        744,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:13:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-014_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-014.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:14",
+      "attributes": {
+        "school": "RIVERBANK INSTITUTE",
+        "total": 315,
+        "maximum": 500,
+        "percent": 63
+      }
+    },
+    {
+      "id": "MARKSHEET-014_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-014.png",
+      "forged_path": "forged/whiteout/MARKSHEET-014_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-014_whiteout.png",
+      "region_box": [
+        257,
+        125,
+        386,
+        147
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:14:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-014_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-014.png",
+      "forged_path": "forged/copy_move/MARKSHEET-014_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-014_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:14:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-014_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-014.png",
+      "forged_path": "forged/text_replace/MARKSHEET-014_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-014_text_replace.png",
+      "region_box": [
+        625,
+        620,
+        669,
+        639
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:14:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-015_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-015.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:15",
+      "attributes": {
+        "school": "SYNTHETIC MODEL UNIVERSITY",
+        "total": 357,
+        "maximum": 500,
+        "percent": 71
+      }
+    },
+    {
+      "id": "MARKSHEET-015_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-015.png",
+      "forged_path": "forged/whiteout/MARKSHEET-015_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-015_whiteout.png",
+      "region_box": [
+        617,
+        161,
+        745,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:15:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-015_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-015.png",
+      "forged_path": "forged/copy_move/MARKSHEET-015_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-015_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:15:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-015_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-015.png",
+      "forged_path": "forged/text_replace/MARKSHEET-015_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-015_text_replace.png",
+      "region_box": [
+        617,
+        688,
+        652,
+        709
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:15:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-016_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-016.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:16",
+      "attributes": {
+        "school": "NORTHFIELD ACADEMY",
+        "total": 485,
+        "maximum": 600,
+        "percent": 81
+      }
+    },
+    {
+      "id": "MARKSHEET-016_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-016.png",
+      "forged_path": "forged/whiteout/MARKSHEET-016_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-016_whiteout.png",
+      "region_box": [
+        257,
+        125,
+        378,
+        151
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:16:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-016_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-016.png",
+      "forged_path": "forged/copy_move/MARKSHEET-016_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-016_copy_move.png",
+      "region_box": [
+        620,
+        852,
+        850,
+        900
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:16:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-016_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-016.png",
+      "forged_path": "forged/text_replace/MARKSHEET-016_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-016_text_replace.png",
+      "region_box": [
+        257,
+        162,
+        395,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:16:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-017_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-017.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:17",
+      "attributes": {
+        "school": "HALCYON POLYTECHNIC",
+        "total": 343,
+        "maximum": 500,
+        "percent": 69
+      }
+    },
+    {
+      "id": "MARKSHEET-017_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-017.png",
+      "forged_path": "forged/whiteout/MARKSHEET-017_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-017_whiteout.png",
+      "region_box": [
+        617,
+        161,
+        745,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:17:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-017_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-017.png",
+      "forged_path": "forged/copy_move/MARKSHEET-017_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-017_copy_move.png",
+      "region_box": [
+        620,
+        806,
+        850,
+        854
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:17:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-017_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-017.png",
+      "forged_path": "forged/text_replace/MARKSHEET-017_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-017_text_replace.png",
+      "region_box": [
+        617,
+        688,
+        652,
+        709
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:17:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-018_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-018.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:18",
+      "attributes": {
+        "school": "HALCYON POLYTECHNIC",
+        "total": 461,
+        "maximum": 600,
+        "percent": 77
+      }
+    },
+    {
+      "id": "MARKSHEET-018_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-018.png",
+      "forged_path": "forged/whiteout/MARKSHEET-018_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-018_whiteout.png",
+      "region_box": [
+        256,
+        125,
+        408,
+        151
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:18:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-018_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-018.png",
+      "forged_path": "forged/copy_move/MARKSHEET-018_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-018_copy_move.png",
+      "region_box": [
+        620,
+        852,
+        850,
+        900
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:18:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-018_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-018.png",
+      "forged_path": "forged/text_replace/MARKSHEET-018_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-018_text_replace.png",
+      "region_box": [
+        257,
+        162,
+        395,
+        182
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:18:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-019_none",
+      "doc_type": "marksheet",
+      "manipulation": "none",
+      "original_path": "original/marksheet/MARKSHEET-019.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:19",
+      "attributes": {
+        "school": "ST. ARDEN COLLEGE",
+        "total": 435,
+        "maximum": 600,
+        "percent": 72
+      }
+    },
+    {
+      "id": "MARKSHEET-019_whiteout",
+      "doc_type": "marksheet",
+      "manipulation": "whiteout",
+      "original_path": "original/marksheet/MARKSHEET-019.png",
+      "forged_path": "forged/whiteout/MARKSHEET-019_whiteout.png",
+      "mask_path": "masks/whiteout/MARKSHEET-019_whiteout.png",
+      "region_box": [
+        256,
+        125,
+        480,
+        151
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:19:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-019_copy_move",
+      "doc_type": "marksheet",
+      "manipulation": "copy_move",
+      "original_path": "original/marksheet/MARKSHEET-019.png",
+      "forged_path": "forged/copy_move/MARKSHEET-019_copy_move.png",
+      "mask_path": "masks/copy_move/MARKSHEET-019_copy_move.png",
+      "region_box": [
+        620,
+        852,
+        850,
+        900
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:19:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "MARKSHEET-019_text_replace",
+      "doc_type": "marksheet",
+      "manipulation": "text_replace",
+      "original_path": "original/marksheet/MARKSHEET-019.png",
+      "forged_path": "forged/text_replace/MARKSHEET-019_text_replace.png",
+      "mask_path": "masks/text_replace/MARKSHEET-019_text_replace.png",
+      "region_box": [
+        625,
+        666,
+        669,
+        685
+      ],
+      "image_size": [
+        1000,
+        1300
+      ],
+      "seed": "20260101:marksheet:19:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-000_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-000.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:0",
+      "attributes": {
+        "state": "Kerala",
+        "district": "Indore"
+      }
+    },
+    {
+      "id": "ID_CARD-000_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-000.png",
+      "forged_path": "forged/whiteout/ID_CARD-000_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-000_whiteout.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:0:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-000_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-000.png",
+      "forged_path": "forged/copy_move/ID_CARD-000_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-000_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:0:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-000_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-000.png",
+      "forged_path": "forged/text_replace/ID_CARD-000_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-000_text_replace.png",
+      "region_box": [
+        287,
+        291,
+        469,
+        316
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:0:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-001_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-001.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:1",
+      "attributes": {
+        "state": "Rajasthan",
+        "district": "Jaipur"
+      }
+    },
+    {
+      "id": "ID_CARD-001_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-001.png",
+      "forged_path": "forged/whiteout/ID_CARD-001_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-001_whiteout.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:1:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-001_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-001.png",
+      "forged_path": "forged/copy_move/ID_CARD-001_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-001_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:1:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-001_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-001.png",
+      "forged_path": "forged/text_replace/ID_CARD-001_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-001_text_replace.png",
+      "region_box": [
+        287,
+        321,
+        556,
+        347
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:1:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-002_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-002.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:2",
+      "attributes": {
+        "state": "Rajasthan",
+        "district": "Bengaluru"
+      }
+    },
+    {
+      "id": "ID_CARD-002_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-002.png",
+      "forged_path": "forged/whiteout/ID_CARD-002_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-002_whiteout.png",
+      "region_box": [
+        287,
+        321,
+        598,
+        347
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:2:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-002_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-002.png",
+      "forged_path": "forged/copy_move/ID_CARD-002_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-002_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:2:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-002_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-002.png",
+      "forged_path": "forged/text_replace/ID_CARD-002_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-002_text_replace.png",
+      "region_box": [
+        287,
+        291,
+        452,
+        316
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:2:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-003_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-003.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:3",
+      "attributes": {
+        "state": "Karnataka",
+        "district": "Bengaluru"
+      }
+    },
+    {
+      "id": "ID_CARD-003_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-003.png",
+      "forged_path": "forged/whiteout/ID_CARD-003_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-003_whiteout.png",
+      "region_box": [
+        287,
+        291,
+        456,
+        317
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:3:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-003_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-003.png",
+      "forged_path": "forged/copy_move/ID_CARD-003_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-003_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:3:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-003_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-003.png",
+      "forged_path": "forged/text_replace/ID_CARD-003_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-003_text_replace.png",
+      "region_box": [
+        287,
+        321,
+        599,
+        347
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:3:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-004_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-004.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:4",
+      "attributes": {
+        "state": "Kerala",
+        "district": "Indore"
+      }
+    },
+    {
+      "id": "ID_CARD-004_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-004.png",
+      "forged_path": "forged/whiteout/ID_CARD-004_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-004_whiteout.png",
+      "region_box": [
+        287,
+        321,
+        524,
+        346
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:4:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-004_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-004.png",
+      "forged_path": "forged/copy_move/ID_CARD-004_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-004_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:4:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-004_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-004.png",
+      "forged_path": "forged/text_replace/ID_CARD-004_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-004_text_replace.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:4:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-005_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-005.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:5",
+      "attributes": {
+        "state": "Maharashtra",
+        "district": "Bengaluru"
+      }
+    },
+    {
+      "id": "ID_CARD-005_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-005.png",
+      "forged_path": "forged/whiteout/ID_CARD-005_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-005_whiteout.png",
+      "region_box": [
+        286,
+        150,
+        518,
+        175
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:5:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-005_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-005.png",
+      "forged_path": "forged/copy_move/ID_CARD-005_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-005_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:5:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-005_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-005.png",
+      "forged_path": "forged/text_replace/ID_CARD-005_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-005_text_replace.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:5:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-006_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-006.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:6",
+      "attributes": {
+        "state": "Madhya Pradesh",
+        "district": "Indore"
+      }
+    },
+    {
+      "id": "ID_CARD-006_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-006.png",
+      "forged_path": "forged/whiteout/ID_CARD-006_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-006_whiteout.png",
+      "region_box": [
+        287,
+        321,
+        627,
+        347
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:6:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-006_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-006.png",
+      "forged_path": "forged/copy_move/ID_CARD-006_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-006_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:6:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-006_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-006.png",
+      "forged_path": "forged/text_replace/ID_CARD-006_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-006_text_replace.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:6:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-007_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-007.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:7",
+      "attributes": {
+        "state": "Kerala",
+        "district": "Pune"
+      }
+    },
+    {
+      "id": "ID_CARD-007_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-007.png",
+      "forged_path": "forged/whiteout/ID_CARD-007_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-007_whiteout.png",
+      "region_box": [
+        287,
+        150,
+        504,
+        175
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:7:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-007_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-007.png",
+      "forged_path": "forged/copy_move/ID_CARD-007_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-007_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:7:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-007_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-007.png",
+      "forged_path": "forged/text_replace/ID_CARD-007_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-007_text_replace.png",
+      "region_box": [
+        287,
+        291,
+        436,
+        316
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:7:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-008_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-008.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:8",
+      "attributes": {
+        "state": "Kerala",
+        "district": "Bengaluru"
+      }
+    },
+    {
+      "id": "ID_CARD-008_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-008.png",
+      "forged_path": "forged/whiteout/ID_CARD-008_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-008_whiteout.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:8:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-008_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-008.png",
+      "forged_path": "forged/copy_move/ID_CARD-008_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-008_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:8:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-008_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-008.png",
+      "forged_path": "forged/text_replace/ID_CARD-008_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-008_text_replace.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:8:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-009_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-009.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:9",
+      "attributes": {
+        "state": "Maharashtra",
+        "district": "Ernakulam"
+      }
+    },
+    {
+      "id": "ID_CARD-009_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-009.png",
+      "forged_path": "forged/whiteout/ID_CARD-009_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-009_whiteout.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:9:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-009_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-009.png",
+      "forged_path": "forged/copy_move/ID_CARD-009_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-009_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:9:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-009_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-009.png",
+      "forged_path": "forged/text_replace/ID_CARD-009_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-009_text_replace.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:9:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-010_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-010.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:10",
+      "attributes": {
+        "state": "Kerala",
+        "district": "Bengaluru"
+      }
+    },
+    {
+      "id": "ID_CARD-010_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-010.png",
+      "forged_path": "forged/whiteout/ID_CARD-010_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-010_whiteout.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:10:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-010_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-010.png",
+      "forged_path": "forged/copy_move/ID_CARD-010_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-010_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:10:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-010_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-010.png",
+      "forged_path": "forged/text_replace/ID_CARD-010_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-010_text_replace.png",
+      "region_box": [
+        287,
+        150,
+        481,
+        180
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:10:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-011_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-011.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:11",
+      "attributes": {
+        "state": "Maharashtra",
+        "district": "Jaipur"
+      }
+    },
+    {
+      "id": "ID_CARD-011_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-011.png",
+      "forged_path": "forged/whiteout/ID_CARD-011_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-011_whiteout.png",
+      "region_box": [
+        287,
+        150,
+        474,
+        180
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:11:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-011_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-011.png",
+      "forged_path": "forged/copy_move/ID_CARD-011_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-011_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:11:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-011_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-011.png",
+      "forged_path": "forged/text_replace/ID_CARD-011_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-011_text_replace.png",
+      "region_box": [
+        287,
+        150,
+        474,
+        180
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:11:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-012_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-012.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:12",
+      "attributes": {
+        "state": "Madhya Pradesh",
+        "district": "Pune"
+      }
+    },
+    {
+      "id": "ID_CARD-012_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-012.png",
+      "forged_path": "forged/whiteout/ID_CARD-012_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-012_whiteout.png",
+      "region_box": [
+        287,
+        150,
+        442,
+        175
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:12:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-012_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-012.png",
+      "forged_path": "forged/copy_move/ID_CARD-012_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-012_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:12:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-012_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-012.png",
+      "forged_path": "forged/text_replace/ID_CARD-012_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-012_text_replace.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:12:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-013_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-013.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:13",
+      "attributes": {
+        "state": "Rajasthan",
+        "district": "Bengaluru"
+      }
+    },
+    {
+      "id": "ID_CARD-013_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-013.png",
+      "forged_path": "forged/whiteout/ID_CARD-013_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-013_whiteout.png",
+      "region_box": [
+        287,
+        291,
+        452,
+        316
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:13:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-013_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-013.png",
+      "forged_path": "forged/copy_move/ID_CARD-013_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-013_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:13:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-013_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-013.png",
+      "forged_path": "forged/text_replace/ID_CARD-013_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-013_text_replace.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:13:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-014_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-014.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:14",
+      "attributes": {
+        "state": "Rajasthan",
+        "district": "Indore"
+      }
+    },
+    {
+      "id": "ID_CARD-014_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-014.png",
+      "forged_path": "forged/whiteout/ID_CARD-014_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-014_whiteout.png",
+      "region_box": [
+        287,
+        321,
+        560,
+        347
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:14:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-014_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-014.png",
+      "forged_path": "forged/copy_move/ID_CARD-014_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-014_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:14:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-014_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-014.png",
+      "forged_path": "forged/text_replace/ID_CARD-014_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-014_text_replace.png",
+      "region_box": [
+        287,
+        150,
+        455,
+        175
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:14:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-015_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-015.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:15",
+      "attributes": {
+        "state": "Karnataka",
+        "district": "Bengaluru"
+      }
+    },
+    {
+      "id": "ID_CARD-015_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-015.png",
+      "forged_path": "forged/whiteout/ID_CARD-015_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-015_whiteout.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:15:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-015_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-015.png",
+      "forged_path": "forged/copy_move/ID_CARD-015_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-015_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:15:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-015_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-015.png",
+      "forged_path": "forged/text_replace/ID_CARD-015_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-015_text_replace.png",
+      "region_box": [
+        617,
+        220,
+        825,
+        241
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:15:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-016_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-016.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:16",
+      "attributes": {
+        "state": "Rajasthan",
+        "district": "Ernakulam"
+      }
+    },
+    {
+      "id": "ID_CARD-016_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-016.png",
+      "forged_path": "forged/whiteout/ID_CARD-016_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-016_whiteout.png",
+      "region_box": [
+        287,
+        150,
+        449,
+        175
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:16:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-016_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-016.png",
+      "forged_path": "forged/copy_move/ID_CARD-016_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-016_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:16:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-016_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-016.png",
+      "forged_path": "forged/text_replace/ID_CARD-016_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-016_text_replace.png",
+      "region_box": [
+        287,
+        321,
+        602,
+        347
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:16:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-017_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-017.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:17",
+      "attributes": {
+        "state": "Madhya Pradesh",
+        "district": "Pune"
+      }
+    },
+    {
+      "id": "ID_CARD-017_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-017.png",
+      "forged_path": "forged/whiteout/ID_CARD-017_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-017_whiteout.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:17:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-017_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-017.png",
+      "forged_path": "forged/copy_move/ID_CARD-017_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-017_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:17:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-017_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-017.png",
+      "forged_path": "forged/text_replace/ID_CARD-017_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-017_text_replace.png",
+      "region_box": [
+        287,
+        321,
+        616,
+        347
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:17:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-018_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-018.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:18",
+      "attributes": {
+        "state": "Karnataka",
+        "district": "Bengaluru"
+      }
+    },
+    {
+      "id": "ID_CARD-018_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-018.png",
+      "forged_path": "forged/whiteout/ID_CARD-018_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-018_whiteout.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:18:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-018_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-018.png",
+      "forged_path": "forged/copy_move/ID_CARD-018_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-018_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:18:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-018_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-018.png",
+      "forged_path": "forged/text_replace/ID_CARD-018_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-018_text_replace.png",
+      "region_box": [
+        287,
+        291,
+        456,
+        317
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:18:text_replace",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-019_none",
+      "doc_type": "id_card",
+      "manipulation": "none",
+      "original_path": "original/id_card/ID_CARD-019.png",
+      "forged_path": null,
+      "mask_path": null,
+      "region_box": null,
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:19",
+      "attributes": {
+        "state": "Kerala",
+        "district": "Ernakulam"
+      }
+    },
+    {
+      "id": "ID_CARD-019_whiteout",
+      "doc_type": "id_card",
+      "manipulation": "whiteout",
+      "original_path": "original/id_card/ID_CARD-019.png",
+      "forged_path": "forged/whiteout/ID_CARD-019_whiteout.png",
+      "mask_path": "masks/whiteout/ID_CARD-019_whiteout.png",
+      "region_box": [
+        287,
+        291,
+        452,
+        316
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:19:whiteout",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-019_copy_move",
+      "doc_type": "id_card",
+      "manipulation": "copy_move",
+      "original_path": "original/id_card/ID_CARD-019.png",
+      "forged_path": "forged/copy_move/ID_CARD-019_copy_move.png",
+      "mask_path": "masks/copy_move/ID_CARD-019_copy_move.png",
+      "region_box": [
+        642,
+        494,
+        774,
+        626
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:19:copy_move",
+      "attributes": {}
+    },
+    {
+      "id": "ID_CARD-019_text_replace",
+      "doc_type": "id_card",
+      "manipulation": "text_replace",
+      "original_path": "original/id_card/ID_CARD-019.png",
+      "forged_path": "forged/text_replace/ID_CARD-019_text_replace.png",
+      "mask_path": "masks/text_replace/ID_CARD-019_text_replace.png",
+      "region_box": [
+        287,
+        219,
+        495,
+        243
+      ],
+      "image_size": [
+        1000,
+        680
+      ],
+      "seed": "20260101:id_card:19:text_replace",
+      "attributes": {}
+    }
+  ]
+}

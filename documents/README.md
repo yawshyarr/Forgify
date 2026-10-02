@@ -33,15 +33,29 @@ and none of these documents is valid for any real-world purpose.
 
 ## How to demo
 
-1. Start the stack (Node 22 required for the Next.js frontend):
+1. Start the stack. The frontend needs Node `>=20.9.0` (`.nvmrc` pins 22):
    ```
-   export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
-   npm run dev                      # http://localhost:3000
+   node -v                            # confirm a working Node first
+   npm run dev                        # http://localhost:3000
    cd python && .venv/bin/python -m uvicorn app.main:app --port 8000
    ```
+   If `/opt/homebrew/opt/node@22/bin/node` aborts with a missing
+   `libsimdutf.34.dylib`, that Homebrew install is broken by a `simdutf`
+   upgrade — use another installed Node instead of reinstalling Python.
 2. Upload a `*_clean.jpg` then the matching `*_tampered.jpg`.
-3. Compare the Semantic Consistency layer and the localised region. The
-   tampered invoice should report an arithmetic breach in the grand total.
+3. Compare the Semantic Consistency layer and the localised region.
+
+### Measured outcome
+
+Verified through `POST http://127.0.0.1:8000/analyze` against the current
+exhibits (semantic layer only; the pixel layer is saturated on all of them):
+
+| Pair | Clean | Tampered |
+|---|---|---|
+| `invoice` | semantic `0.00`, no finding | semantic `0.80`, `SEM-ARITH` — grand total expected `13452`, observed `10452`, Δ `3000` |
+| `marksheet` | semantic `0.00`, no finding | semantic `0.77`, `SEM-ARITH` — column sums `525`, printed total `495`, Δ `30` |
+
+The other twelve exhibits produce no semantic finding in either state.
 
 ## Honest limitations
 
@@ -50,5 +64,10 @@ and none of these documents is valid for any real-world purpose.
   discriminating between the clean and tampered variants.
 - The discriminating signal here is the **semantic arithmetic layer**, which
   verifies the document's own internal identities.
+- Only the `invoice` and `marksheet` pairs are calibrated to produce a clean
+  pass / tamper breach split. The `aadhaar` and `pan` pairs are visually
+  plausible but the semantic layer has no identity check for them yet, so they
+  currently report the same result in both states — do not demo them as
+  detected tampering.
 - A "clean" result means the document is internally consistent. It is not proof
   of authenticity and must not be presented as such.

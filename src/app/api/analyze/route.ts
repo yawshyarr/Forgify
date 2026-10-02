@@ -90,8 +90,24 @@ async function handle(request: Request) {
     }
   }
   if (!report) {
+    // The reference engine is deterministic and useful for UI development, but
+    // it is not evidence-grade inference. Never let it silently produce a
+    // report that an examiner could mistake for a live forensic result.
+    if (process.env.FORENSICS_ALLOW_REFERENCE_ENGINE !== "true") {
+      return bad(
+        remote
+          ? "The live forensic worker is unavailable. No result was issued because the evidence-grade backend could not be reached."
+          : "The live forensic worker is not configured. Set FORENSICS_ENGINE_URL and start the Python worker before analysing evidence.",
+        503,
+        { code: "FORENSICS_ENGINE_UNAVAILABLE", backend: "python-fastapi" },
+      );
+    }
     report = analyzeEvidence({ bytes, name, mimeType, reference });
     report.engine.backend = backend;
+    report.limitations = [
+      ...report.limitations,
+      "This report was produced by the explicitly enabled TypeScript reference engine for demonstration/testing only. It is not evidence-grade and must not be used to certify authenticity or forgery.",
+    ];
   }
 
   /* ------------------------------- persistence ------------------------------ */

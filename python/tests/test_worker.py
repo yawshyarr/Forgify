@@ -8,6 +8,7 @@ a clean one.
 """
 
 from pathlib import Path
+import os
 
 import numpy as np
 import pytest
@@ -104,6 +105,52 @@ def test_analyze_reference_based_compares_two_exhibits():
     assert "metadata" in ref["comparedLayers"]
 
 
+def test_identity_card_ml_is_explicitly_out_of_domain_and_skipped():
+    original = Path(os.environ.get("FORGIFY_ID_ORIGINAL", ""))
+    if not original.is_file():
+        pytest.skip("known identity-card fixture is not available")
+    res = client.post("/analyze", files={"file": (original.name, original.read_bytes(), "image/jpeg")})
+    assert res.status_code == 200
+    ml = _layer(res.json(), "ml-classifier")
+    assert ml["status"] == "skipped"
+    assert "OUT_OF_DOMAIN" in ml["summary"]
+    assert ml["score"] == 0.0
+
+
+def test_reference_comparison_emits_aligned_local_evidence_for_known_id_pair():
+    """Regression for the photographed college-ID ranking inversion.
+
+    The attachments are outside the repository, so this test is skipped in
+    clean CI environments and runs automatically on the development machine
+    where the known pair is available.
+    """
+    original_value = (os.environ.get("FORGIFY_ID_ORIGINAL") or "").strip()
+    manipulated_value = (os.environ.get("FORGIFY_ID_MANIPULATED") or "").strip()
+    if not original_value or not manipulated_value:
+        pytest.skip("known college-ID pair is not available on this machine")
+    original = Path(original_value)
+    manipulated = Path(manipulated_value)
+    if not original.is_file() or not manipulated.is_file():
+        pytest.skip("known college-ID pair is not available on this machine")
+    res = client.post(
+        "/analyze",
+        files={
+            "file": (manipulated.name, manipulated.read_bytes(), "image/jpeg"),
+            "reference": (original.name, original.read_bytes(), "image/jpeg"),
+        },
+    )
+    assert res.status_code == 200
+    report = res.json()
+    comparison = report["referenceComparison"]
+    assert comparison["aligned"] is True
+    assert 0.0 <= comparison["alignmentConfidence"] <= 1.0
+    assert 0.0 <= comparison["structuralDifference"] <= 1.0
+    for key in ("changedRegions", "unchangedRegions", "textChanges", "imageChanges"):
+        assert isinstance(comparison[key], list)
+    assert any(change["field"] == "name" for change in report["reference"].get("fieldDifferences", []))
+    assert any(f["code"] == "REF-FIELD" for f in report["findings"])
+
+
 def test_analyze_screenshot_signature_path_does_not_crash():
     """Regression: the pixel module appended the PX-SMOOTH metric to a `metrics`
     list it only declared *after* the branch, so any image whose flat-area
@@ -145,6 +192,50 @@ def test_analyze_non_image_stays_neutral():
     report = res.json()
     assert report["ok"] is True
     assert all(layer["status"] != "alert" for layer in report["layers"])
+
+
+def test_analyze_non_line_item_table_raises_no_arithmetic_alert():
+    """Regression: `_invoice_checks` inferred a qty x rate = amount identity from
+    the first row with >=3 numeric columns, so an electricity meter's
+    "Previous / Current / Units / Amount" table was read as a price list and
+    every row "breached" (expected 183108272, observed 256). A non-price table is
+    not evidence of forgery, so the identity must be shown to hold for at least
+    one row before any breach is reported."""
+    from app.forensics import forgify as F
+    from app.forensics.modules import to_array
+
+    meter = SAMPLES / "utility_meter_table.jpg"
+    with open(meter, "rb") as fh:
+        bgr = to_array(fh.read())
+
+    ocr = F.tesseract_words(bgr)
+    assert list(F._invoice_checks(ocr.words, bgr.shape[0])) == []
+
+    with open(meter, "rb") as fh:
+        res = client.post(
+            "/analyze", files={"file": (meter.name, fh, "image/jpeg")}
+        )
+    assert res.status_code == 200
+    report = res.json()
+    assert report["ok"] is True
+    assert not any(f["code"] == "SEM-ARITH" for f in report["findings"])
+
+
+def test_marksheet_with_a_perfect_score_still_reconciles():
+    """Regression: the marksheet row guard counted every "100" token in the row
+    window, including a legitimately perfect score in the Marks column. One extra
+    "100" versus row count made the layer return no checks at all, so a real
+    full-marks subject silently disabled the arithmetic check instead of
+    reconciling it. Anchor-column 100s must be excluded from the count."""
+    from app.forensics import forgify as F
+    from app.forensics.modules import to_array
+
+    with open(SAMPLES / "marksheet_full_score.jpg", "rb") as fh:
+        bgr = to_array(fh.read())
+
+    checks = list(F._marksheet_checks(F.tesseract_words(bgr).words, bgr.shape[0]))
+    assert checks, "a full-marks marksheet must still be reconciled, not skipped"
+    assert all(c["ok"] for c in checks), [(c["name"], c["expected"], c["actual"]) for c in checks]
 
 
 def test_analyze_png_clean():

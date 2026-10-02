@@ -2,8 +2,10 @@
 
 FastAPI service that implements the detector layers with real NumPy / OpenCV code.
 The Next.js runtime forwards `POST /api/analyze` here whenever `FORENSICS_ENGINE_URL`
-is configured, and transparently falls back to its TypeScript reference engine if the
-worker is unreachable — so a dead worker never produces a broken dashboard.
+is configured. If the worker is unreachable, the web app fails closed and issues no
+forensic result. The deterministic TypeScript reference engine is available only
+when `FORENSICS_ALLOW_REFERENCE_ENGINE=true` is explicitly set for UI/demo testing;
+those reports are labelled non-evidence-grade.
 
 ```
 python/
